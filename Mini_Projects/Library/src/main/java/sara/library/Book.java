@@ -10,4 +10,18 @@ package sara.library;
  */
 public class Book {
     
+    String title;
+    String author;
+    String ISBN;
+    Boolean isAvailable;
+    
+    public void borrowBook()
+    {
+        isAvailable=false;
+    }
+    
+    public void returnBook()
+    {
+        isAvailable=true;
+    }
 }
