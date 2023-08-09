@@ -10,6 +10,7 @@ package sara.hotelapplication;
  */
 public class Guest {
     
+    
     private String guestID;
     private String name;
     private String contactNumber;
