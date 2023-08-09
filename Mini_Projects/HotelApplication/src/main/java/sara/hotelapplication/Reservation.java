@@ -6,6 +6,7 @@ package sara.hotelapplication;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.List;
 /**
  *
  * @author saraqin
@@ -13,53 +14,53 @@ import java.time.Month;
 public class Reservation {
     
     private String reservationID;
-    private Guest guest;
+    private List<Guest> guests;
     private Room room;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     
-    public Reservation(String reservationID, Guest guest, Room room, LocalDate checkInDate, LocalDate checkOutDate)
+    public Reservation(String reservationID, List<Guest> guests, Room room, LocalDate checkInDate, LocalDate checkOutDate)
     {
         this.reservationID = reservationID;
-        this.guest = guest;
+        this.guests = guests;
         this.room = room;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
     }
     
-    public String getReservationID()
+    public String getReservationID ()
     {
         return reservationID;
     }
     
-    public Guest getGuest()
+    public List<Guest> getGuests ()
     {
-        return guest;
+        return guests;
     }
     
-    public Room getRoom()
+    public Room getRoom ()
     {
         return room;
     }
     
-    public LocalDate getCheckInDate()
+    public LocalDate getCheckInDate ()
     {
         return checkInDate;
     }
     
-    public LocalDate getCheckOutDate()
+    public LocalDate getCheckOutDate ()
     {
         return checkOutDate;
     }
     
-    public void setReservationID(String reservationID)
+    public void setReservationID (String reservationID)
     {
         this.reservationID = reservationID;
     }
     
-    public void setGuest(Guest guest)
+    public void setGuests (List<Guest> guests)
     {
-        this.guest = guest;
+        this.guests = guests;
     }
     
     public void setRoom(Room room)
@@ -67,13 +68,41 @@ public class Reservation {
         this.room = room;
     }
     
-    public void setCheckInDate(LocalDate checkInDate)
+    public void setCheckInDate (LocalDate checkInDate)
     {
         this.checkInDate =  checkInDate;
     }
     
-    public void setCheckOutDate(LocalDate checkOutDate)
+    public void setCheckOutDate (LocalDate checkOutDate)
     {
         this.checkOutDate = checkOutDate;
+    }
+    
+    public Boolean isLessThan4 (List<Guest> guests)
+    {
+        int totalNumber = 0;
+        Boolean boo = true;
+        for (Guest guest : guests)
+        {
+            totalNumber = totalNumber + 1;
+        }
+        if (totalNumber > 4)
+        {
+            boo = false;
+        }
+        return boo;
+    }
+    
+    public void printWarning (Boolean boo)
+    {
+        if (boo==false)
+        {
+            System.out.println("Please select additional room(s). One room can accomodate maximum 4 guests");
+        }
+    }
+    
+    public Boolean isAvailable (LocalDate checkInDate, LocalDate checkOutDate)
+    {
+        
     }
 }

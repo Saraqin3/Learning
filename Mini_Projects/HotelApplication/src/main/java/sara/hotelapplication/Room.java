@@ -4,6 +4,9 @@
  */
 package sara.hotelapplication;
 
+import java.util.List;
+import java.time.LocalDate;
+import java.time.Month;
 /**
  *
  * @author saraqin
@@ -14,13 +17,23 @@ public class Room {
     private int capacity;
     private Boolean isAvailable;
     private RoomType type;
+    private List<LocalDate> unavailableDates;
     
-    public Room (int roomNumber, int capacity, Boolean isAvailable, RoomType type)
+    public Room (int roomNumber, int capacity, Boolean isAvailable, RoomType type, List<LocalDate> unavailableDates)
     {
         this.roomNumber = roomNumber;
         this.capacity = capacity;
         this.type = type;
         this.isAvailable = isAvailable;
+        this.unavailableDates = unavailableDates;
+    }
+    
+    public void setUnavailableDates(LocalDate checkin, LocalDate checkout) 
+    {
+        for (LocalDate date = checkin; date.isEqual(checkout); date.plusDays(1))
+        {        
+            unavailableDates.add(date);
+        }     
     }
     
     public int getRoomNumber()

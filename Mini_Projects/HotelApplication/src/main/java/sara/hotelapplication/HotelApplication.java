@@ -14,6 +14,7 @@ public class HotelApplication {
     private String hotelName;
     private String hotelAddress;
     private List<Room> rooms;
+    private List<Reservation> reservations;
     
     public static void main(String[] args) {
         System.out.println("Welcome to Hotel!"); 
@@ -55,4 +56,6 @@ public class HotelApplication {
     {
         this.rooms = rooms;
     }
+    
+    
 }
