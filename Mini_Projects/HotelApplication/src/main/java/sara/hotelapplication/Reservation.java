@@ -101,8 +101,5 @@ public class Reservation {
         }
     }
     
-    public Boolean isAvailable ()//room type is more important than date, check room type first
-    {
-        for (Room room : HotelApplication.)
-    }
+    
 }

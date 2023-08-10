@@ -16,7 +16,7 @@ public class HotelApplication {
     private String hotelName;
     private String hotelAddress;
     private List<Room> rooms;
-    private List<Reservation> reservations;
+    
     
     
     public void run ()
@@ -93,17 +93,35 @@ public class HotelApplication {
         return boo;
     }
     
-    public Room findRoomType (RoomType type)
+    public List<Room> findRooms (RoomType type)
     {
-        Room rightRoom = null;
+        List <Room> rightRooms = null;
         for (Room room : rooms)
         {
             if (room.getRoomType().equals(type))
             {
-                rightRoom = room;
+                rightRooms.add(room);
             }
            
         }
-        return rightRoom;
+        return rightRooms;
     }
+    
+    public Boolean validReservation (Reservation reservation)//A valid reservation meets 2 requirments: roomtype and dates
+    {
+        RoomType type = reservation.getType();
+        LocalDate checkin = reservation.getCheckInDate();
+        LocalDate checkout = reservation.getCheckOutDate();
+        List<Room> rightRooms = findRooms(type);
+        Boolean boo = true;
+        
+        for (Room room : rightRooms)
+        {
+            boo = isAvailable(room, checkin, checkout);
+                    
+        }
+        return boo;
+    }
+    
+    
 }
