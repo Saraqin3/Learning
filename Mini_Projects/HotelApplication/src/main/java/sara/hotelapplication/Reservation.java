@@ -15,15 +15,15 @@ public class Reservation {
     
     private String reservationID;
     private List<Guest> guests;
-    private Room room;
+    private RoomType type;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     
-    public Reservation(String reservationID, List<Guest> guests, Room room, LocalDate checkInDate, LocalDate checkOutDate)
+    public Reservation(String reservationID, List<Guest> guests, RoomType type, LocalDate checkInDate, LocalDate checkOutDate)
     {
         this.reservationID = reservationID;
         this.guests = guests;
-        this.room = room;
+        this.type = type;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
     }
@@ -38,9 +38,9 @@ public class Reservation {
         return guests;
     }
     
-    public Room getRoom ()
+    public RoomType getType ()
     {
-        return room;
+        return type;
     }
     
     public LocalDate getCheckInDate ()
@@ -63,9 +63,9 @@ public class Reservation {
         this.guests = guests;
     }
     
-    public void setRoom(Room room)
+    public void setType(RoomType type)
     {
-        this.room = room;
+        this.type = type;
     }
     
     public void setCheckInDate (LocalDate checkInDate)
@@ -101,8 +101,8 @@ public class Reservation {
         }
     }
     
-    public Boolean isAvailable (LocalDate checkInDate, LocalDate checkOutDate)
+    public Boolean isAvailable ()//room type is more important than date, check room type first
     {
-        
+        for (Room room : HotelApplication.)
     }
 }
