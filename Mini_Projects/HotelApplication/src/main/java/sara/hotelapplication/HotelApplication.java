@@ -7,6 +7,8 @@ package sara.hotelapplication;
 import java.util.List;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.HashMap;
+import java.util.Map;
 /**
  *
  * @author saraqin
@@ -16,7 +18,7 @@ public class HotelApplication {
     private String hotelName;
     private String hotelAddress;
     private List<Room> rooms;
-    
+    private HashMap<String, Reservation> confirmedReservations;
     
     
     public void run ()
@@ -28,11 +30,12 @@ public class HotelApplication {
         System.out.println("Welcome to Hotel!"); 
     }
     
-    public HotelApplication(String hotelName, String hotelAddress, List<Room> rooms)
+    public HotelApplication(String hotelName, String hotelAddress, List<Room> rooms, HashMap<String, Reservation> confirmedReservations)
     {
         this.hotelName = hotelName;
         this.hotelAddress = hotelAddress;
         this.rooms = rooms;
+        this.confirmedReservations = confirmedReservations;
     }
     
     public String getHotelName()
@@ -123,5 +126,36 @@ public class HotelApplication {
         return boo;
     }
     
+    public String idGenerator ()
+    {
+        String id = "0000";
+        int count = 1;
+        
+        for (HashMap.Entry<String, Reservation> entry : confirmedReservations.entrySet())
+        {
+            count = count + 1;
+        }
+        
+        return id+String.valueOf(count);
+    }
     
+    public void confirmReservation (Reservation reservation)
+    {
+        String id = idGenerator();
+        if (validReservation(reservation)==true)
+        {
+            confirmedReservations.put(id, reservation);
+        }
+    }
+    
+    public void makeReservation (List<Guest> guests, RoomType type, LocalDate checkInDate, LocalDate checkOutDate)
+    {
+        Reservation reservation = Reservation(List<Guest> guests, RoomType type, LocalDate checkInDate, LocalDate checkOutDate);
+        
+    }
+    
+    public void checkOut (String id)
+    {
+        
+    }
 }

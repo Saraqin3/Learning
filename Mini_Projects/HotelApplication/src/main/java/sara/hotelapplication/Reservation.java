@@ -13,25 +13,22 @@ import java.util.List;
  */
 public class Reservation {
     
-    private String reservationID;
+    
     private List<Guest> guests;
     private RoomType type;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     
-    public Reservation(String reservationID, List<Guest> guests, RoomType type, LocalDate checkInDate, LocalDate checkOutDate)
+    public Reservation(List<Guest> guests, RoomType type, LocalDate checkInDate, LocalDate checkOutDate)
     {
-        this.reservationID = reservationID;
+        
         this.guests = guests;
         this.type = type;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
     }
     
-    public String getReservationID ()
-    {
-        return reservationID;
-    }
+    
     
     public List<Guest> getGuests ()
     {
@@ -51,11 +48,6 @@ public class Reservation {
     public LocalDate getCheckOutDate ()
     {
         return checkOutDate;
-    }
-    
-    public void setReservationID (String reservationID)
-    {
-        this.reservationID = reservationID;
     }
     
     public void setGuests (List<Guest> guests)
