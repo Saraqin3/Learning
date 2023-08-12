@@ -139,23 +139,30 @@ public class HotelApplication {
         return id+String.valueOf(count);
     }
     
-    public void confirmReservation (Reservation reservation)
+    public String confirmReservation (Reservation reservation) //Included checking if reservation valid 
     {
         String id = idGenerator();
         if (validReservation(reservation)==true)
         {
             confirmedReservations.put(id, reservation);
         }
+        return id;
     }
     
-    public void makeReservation (List<Guest> guests, RoomType type, LocalDate checkInDate, LocalDate checkOutDate)
+    public String makeReservation (List<Guest> guests, RoomType type, LocalDate checkInDate, LocalDate checkOutDate)
     {
-        Reservation reservation = Reservation(List<Guest> guests, RoomType type, LocalDate checkInDate, LocalDate checkOutDate);
-        
+        Reservation reservation = new Reservation(guests, type, checkInDate, checkOutDate);
+        Boolean isLessThan4 = reservation.isLessThan4(guests);
+        String id = "Reservation not available";
+        if(isLessThan4==true)
+        {
+                id = confirmReservation(reservation);  
+        }
+        return id;
     }
     
-    public void checkOut (String id)
+    public void cancelReservation (String id)
     {
-        
+        confirmedReservations.remove(id);
     }
 }
