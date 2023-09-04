@@ -67,50 +67,116 @@ public class LinkedList {//linked towards one direction
         }
     }
     
-    public void RemoveValue(int value)//by value
+    public void RemoveValue(int value)//by value (remove all)
     {
-        if(headNode.data==value)//checking if headNode is getting removed
+    
+        if (headNode==null) //if list empty, exit
+        {
+           return;
+        }
+    
+    
+        //checking if value is in between headNode and tailNode
+        Node nodeBefore=headNode;
+        Node node=nodeBefore.nextNode; 
+        
+        if(node!=null)//Only run when list has at least 2 nodes
+        {
+        while (node.equals(tailNode)==false)
+        {
+
+            int currtValue=node.data;
+            
+            if (currtValue==value)
+            {
+                nodeBefore.nextNode=nodeBefore.nextNode.nextNode;
+            }
+            
+            else
+            {
+                nodeBefore=nodeBefore.nextNode;
+            }
+            
+            node=nodeBefore.nextNode;
+    
+        }
+        }
+    
+        
+        //checking if headNode is the value
+        if(headNode.data==value)
         {
             headNode=headNode.nextNode;
         }
-        else
+        
+        //if empty, end funciton
+        if (headNode==null)
         {
-        Node previousNode=headNode;
-        int nextNodeValue=previousNode.nextNode.data;
-        while (nextNodeValue!=value)//targeting the previous Node of target Node
-        {
-            previousNode=previousNode.nextNode;
-            nextNodeValue=previousNode.nextNode.data;
+            tailNode=headNode;
+            return;
         }
         
-        previousNode.nextNode=previousNode.nextNode.nextNode;
+        //checking if the last node is also the value, if yes, need to remove here
+        if (headNode.equals(tailNode))
+        {
+            if (headNode.data==value)
+            {
+                headNode=null;
+                tailNode=headNode;
+            }
+            return;
         }
+       
+        //checking if tailNode is the value
+        if (tailNode.data==value)
+        {
+            tailNode=nodeBefore;
+        }
+        
+      
     }
+  
     
     public void Remove(int index)//by index
+    { 
+    if (headNode==null)//if list is empty, end function
     {
-        Node node=headNode;
-        int indexOfList=0;
+        return;
+    }
         
-        Node previousNode=null;
-        
-        while (indexOfList<index+1)
+    if (index==0)//if it is first one being removed
+    {
+        headNode=headNode.nextNode;
+        if(headNode==null)//in case of there is only one node in list
         {
-            node=node.nextNode;
-            indexOfList++;
-            if(indexOfList==index-1)
-            {
-                previousNode=node;
-            }
+            tailNode=headNode;
         }
-        if(previousNode==null)//means the headNode is getting removed
+        return;
+    }
+
+    Node nodeBefore=headNode;
+    Node currtNode=headNode.nextNode;
+    int myIndex=1;
+    
+    if(headNode.equals(tailNode)==false)//this condition only get to run when there is at least 2 nodes
+    {
+    while (currtNode.equals(tailNode)==false)
+    {
+        if(myIndex==index)
         {
-            headNode=node;
+            nodeBefore.nextNode=nodeBefore.nextNode.nextNode;
+            return;
         }
-        else
-        {
-        previousNode.nextNode=node;
-        }
+        myIndex++;
+        nodeBefore=nodeBefore.nextNode;
+        currtNode=currtNode.nextNode;  
+    }
+    }
+    
+    if(myIndex==index)
+    {
+        tailNode=nodeBefore;   
+    }
     }
     
     public void PrintList()
