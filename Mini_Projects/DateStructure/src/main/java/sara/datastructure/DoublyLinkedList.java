@@ -71,6 +71,7 @@ public class DoublyLinkedList {
         if(headNode==null)
         {
             headNode=newNode;
+            tailNode=headNode;
         }
         
         else
@@ -83,28 +84,123 @@ public class DoublyLinkedList {
     
     public void RemoveValue(int value)
     {
+        if (headNode==null)//if list is empty, end function
+        {
+            return;
+        }
+        
+        //check middle
+        Node nodeBefore = headNode;
+        
+        
+        if(nodeBefore.nextNode!=null)//prevent while loop breaks so only at least 2 nodes can run it
+        {
+        while (nodeBefore.nextNode.equals(tailNode)==false)
+        {
+            if(nodeBefore.nextNode.data==value)
+            {
+                nodeBefore.nextNode=nodeBefore.nextNode.nextNode;
+                nodeBefore.nextNode.nextNode.previousNode=nodeBefore;
+            }
+            else
+            {
+                nodeBefore=nodeBefore.nextNode;
+            }
+        }
+        }
+        
+        //check head
         if(headNode.data==value)
         {
             headNode=headNode.nextNode;
-            headNode.nextNode=null;
-        }
-        
-        else
-        {
-        Node node = headNode;
-        while (node!=tailNode)
-        {
-            if(node.data==value)
+            
+            if(headNode==null)//in case this is the only node left
             {
-                node.previousNode.nextNode=node.nextNode;
-                node.nextNode.previousNode=node.previousNode;
+                tailNode=headNode;
+                return;
             }
             
-            node=node.nextNode;
+            else
+            {
+                headNode.previousNode=null;
+            }
+        }
+        
+        //check tail
+        if(tailNode.data==value)
+        {
+            tailNode=tailNode.previousNode;
+            if(tailNode==null)//in case this is the only node left
+            {
+                headNode=tailNode;
+            }
+            else
+            {
+                tailNode.nextNode=null;
+            }
+        }
+        
+    }
+    
+    public void Remove (int index)//remove by index
+    {
+        if(headNode==null)
+        {
+            return;
+        }
+        
+        //check head 
+        if(index==0)
+        {
+            headNode=headNode.nextNode;
+            if(headNode==null)//in case this is only node left
+            {
+                tailNode=headNode;
+            }
+            else
+            {
+                headNode.previousNode=null;
+            }
+            
+            return;
+        }
+        
+        //check middle
+        Node nodeBefore=headNode;
 
+        int myIndex=1;
+        if (nodeBefore.nextNode!=null)//prevent while loop break, so at least 2 nodes can run it
+        {
+        while(nodeBefore.nextNode.equals(tailNode)==false)
+        {
+            if(myIndex==index)
+            {
+                nodeBefore.nextNode=nodeBefore.nextNode.nextNode;
+                nodeBefore.nextNode.nextNode.previousNode=nodeBefore;
+                return;
+            }
+            else
+            {
+                nodeBefore=nodeBefore.nextNode;
+          
+                myIndex++;
+            }
         }
         }
         
+        //check tail
+        if(myIndex==index)
+        {
+            tailNode=tailNode.previousNode;
+            if(tailNode==null)//in case there is only one node left
+            {
+                headNode=tailNode;
+            }
+            else
+            {
+                tailNode.nextNode=null;
+            }
+        }
         
     }
     

@@ -58,6 +58,7 @@ public class LinkedList {//linked towards one direction
         if (headNode==null)
         {
             headNode=newNode;
+            tailNode=headNode;
         }
         
         else
@@ -78,14 +79,14 @@ public class LinkedList {//linked towards one direction
     
         //checking if value is in between headNode and tailNode
         Node nodeBefore=headNode;
-        Node node=nodeBefore.nextNode; 
         
-        if(node!=null)//Only run when list has at least 2 nodes
+        
+        if(nodeBefore.nextNode!=null)//Only run when list has at least 2 nodes
         {
-        while (node.equals(tailNode)==false)
+        while (nodeBefore.nextNode.equals(tailNode)==false)
         {
 
-            int currtValue=node.data;
+            int currtValue=nodeBefore.nextNode.data;
             
             if (currtValue==value)
             {
@@ -96,9 +97,7 @@ public class LinkedList {//linked towards one direction
             {
                 nodeBefore=nodeBefore.nextNode;
             }
-            
-            node=nodeBefore.nextNode;
-    
+ 
         }
         }
     
@@ -155,12 +154,12 @@ public class LinkedList {//linked towards one direction
     }
 
     Node nodeBefore=headNode;
-    Node currtNode=headNode.nextNode;
+    
     int myIndex=1;
     
     if(headNode.equals(tailNode)==false)//this condition only get to run when there is at least 2 nodes
     {
-    while (currtNode.equals(tailNode)==false)
+    while (nodeBefore.nextNode.equals(tailNode)==false)
     {
         if(myIndex==index)
         {
@@ -169,7 +168,6 @@ public class LinkedList {//linked towards one direction
         }
         myIndex++;
         nodeBefore=nodeBefore.nextNode;
-        currtNode=currtNode.nextNode;  
     }
     }
     

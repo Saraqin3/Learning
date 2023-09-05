@@ -8,12 +8,9 @@ package sara.datastructure;
  *
  * @author saraqin
  */
-public class Stack {
+public class LinkedListOpposite {
     
-
-    
-    Node topNode = null;
-    
+    Node tailNode=null;
     
     public class Node {
     
@@ -51,7 +48,7 @@ public class Stack {
     
     }
     
-    public Stack ()
+    public LinkedListOpposite ()
     {
         
     }
@@ -60,38 +57,37 @@ public class Stack {
     {
         Node newNode = new Node(value, null);
         
-        newNode.lastNode=topNode;
-        topNode=newNode;
-
+        newNode.lastNode=tailNode;
+        tailNode=newNode;
     }
     
-    public Integer Remove ()//remove one per time, first in last out
+    public void RemoveValue (int value)//remove all values
     {
-        if (topNode==null)
+        if (tailNode==null)
         {
-            return null;
+            return;
         }
         
-        int value=topNode.data;
+        //checking nodes previous of tailNode
+        Node nodeBefore=tailNode;
+        while (nodeBefore.lastNode!=null)
+        {
+            if(nodeBefore.lastNode.data==value)
+            {
+                nodeBefore.lastNode=nodeBefore.lastNode.lastNode;
+            }
+            else
+            {
+                nodeBefore=nodeBefore.lastNode;
+            }
+        }
         
-        topNode=topNode.lastNode;
-        
-        return value;
-        
+        //check tailNode
+        if (tailNode.data==value)
+        {
+            tailNode=tailNode.lastNode;
+        }
     }
     
-    public void PrintOutputs ()//print by output order
-    {
-        System.out.print("The stack output order is: ");
-        
-        Node node = topNode;
-        
-        while (node!=null)
-        {
-            System.out.print(node.data+" ");
-            node=node.lastNode;
-        }
-    }
-            
-            
+    
 }
