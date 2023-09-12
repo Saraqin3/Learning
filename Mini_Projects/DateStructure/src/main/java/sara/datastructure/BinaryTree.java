@@ -116,19 +116,47 @@ public class BinaryTree {
     
     public void PrintInOrder()//From small to big? (in order)//sort and print?
     {
+       Node node=rootNode;
        
+       if (node==null)
+       {
+           return;
+       }
+       
+       inOrder(node);
         
     }
     
-    public void PreOrder(Node node)
+    public void inOrder(Node node)
     {
-
+        
+        
+        if(node.leftNode!=null)
+        {
+            Node node1=node.leftNode;
+            inOrder(node1);
+            System.out.println(node1.data);
+        }
+        
+        System.out.println(node.data);
+        
+        if(node.rightNode!=null)
+        {
+            Node node2=node.rightNode;
+            inOrder(node2);
+            System.out.println(node2.data);
+        }
+    }
+    
+    public void preOrder(Node node)
+    {
+       Node node1;
         
         if (node.leftNode!=null)
         {
             System.out.println(node.leftNode.data);
-            node=node.leftNode;
-            PreOrder(node);
+            node1=node.leftNode;
+            preOrder(node1);
         } 
         
         
@@ -136,12 +164,12 @@ public class BinaryTree {
         {
         System.out.println(node.rightNode.data);
         node=node.rightNode;
-        PreOrder(node);
+        preOrder(node);
         }  
         
     }
     
-    public void PrintPreOrder()//pre-order
+    public void printPreOrder()//pre-order
     {
         if(rootNode!=null)
         {
@@ -151,13 +179,37 @@ public class BinaryTree {
         Node node=rootNode;
         
         
-        PreOrder(node);
+        preOrder(node);
            
     }
     
-    public void PrintPostOrder()//post-order
+    public void postOrder(Node node)
     {
         
+        if(node.leftNode!=null)
+        {
+            Node node1=node.leftNode;
+            postOrder(node1);
+            System.out.println(node1.data);
+        }
+        
+        if(node.rightNode!=null)
+        {
+            node=node.rightNode;
+            postOrder(node);
+            System.out.println(node.data);
+        }
+    }
+    
+    public void printPostOrder()//post-order
+    {
+        Node node = rootNode;
+        if(node!=null)
+        {
+        postOrder(node);
+        System.out.println(node.data);
+        }
+
     }
     
     public void remove (int value)//small scale balance?
