@@ -34,7 +34,7 @@ public class BinaryTree {
         
     }
     
-    public void Add(int value)
+    public void add(int value)
     {
         Node newNode= new Node (value, null, null);
         
@@ -80,7 +80,7 @@ public class BinaryTree {
                 
     }
     
-    public void Search(int value)
+    public void search(int value)
     {
         if(rootNode==null)
         {
@@ -114,7 +114,7 @@ public class BinaryTree {
        System.out.println("Value found");
     }
     
-    public void PrintInOrder()//From small to big? (in order)//sort and print?
+    public void printInOrder()//From small to big? 
     {
        Node node=rootNode;
        
@@ -135,7 +135,6 @@ public class BinaryTree {
         {
             Node node1=node.leftNode;
             inOrder(node1);
-            System.out.println(node1.data);
         }
         
         System.out.println(node.data);
@@ -144,7 +143,6 @@ public class BinaryTree {
         {
             Node node2=node.rightNode;
             inOrder(node2);
-            System.out.println(node2.data);
         }
     }
     
@@ -173,7 +171,7 @@ public class BinaryTree {
     {
         if(rootNode!=null)
         {
-           System.out.println(rootNode); 
+           System.out.println(rootNode.data); 
         }
         
         Node node=rootNode;
@@ -217,7 +215,7 @@ public class BinaryTree {
         
     }
     
-    public void Balance ()
+    public void balance ()
     {
         
     }
