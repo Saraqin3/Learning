@@ -15,15 +15,16 @@ public class List {
     public static void main(String[] args) {
         System.out.println("Hello World!");
              
-        sort();
+        int n =3;//random number;
+        sort(n);
         print();
         
     }
     
-    public static void sort()
+    public static void sort(int n)
         {
-            int n = 3;//random number
-            while(n!=0)
+            
+            if(n!=0)
             {
             n=0;
             for (int i=0;i+1<list.length;i++)
@@ -39,8 +40,40 @@ public class List {
                 }
                     
             }
+           sort(n);
             }
+            
         }
+    
+    public static void divide(int n1, int n4)
+    {
+
+
+        if(n1!=n4)
+        {
+        int n2 = (n4 - n1)/2;
+        int n3 = n2 + 1;
+            
+        divide(n1,n2);
+
+        divide(n3, n4);
+
+        }
+        
+        
+    }
+    
+   
+    
+    public static void mergeSort()//nlog(n)
+    {
+        while ()
+        {
+        divide(0, list.length)
+            
+        }
+        
+    }
     
     public static void print()
     {
@@ -49,4 +82,6 @@ public class List {
          System.out.print(list[i]+" ");
         }
     }
+    
+    
 }
