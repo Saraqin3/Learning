@@ -10,13 +10,13 @@ package sara.list;
  */
 public class List {
 
-    static int[] list = {4,5,7,8,4,23,56,12,3,6,78,20,6};
+    static int[] list = {4,5,15,8,2,23,56,12,3,6,78,20,6};
     
     public static void main(String[] args) {
         System.out.println("Hello World!");
              
         int n =3;//random number;
-        sort(n);
+        mergeSort(0,12);
         print();
         
     }
@@ -45,35 +45,76 @@ public class List {
             
         }
     
-    public static void divide(int n1, int n4)
+    public static void mergeSort(int start, int end)
     {
-
-
-        if(n1!=n4)
+        if (start != end)
         {
-        int n2 = (n4 - n1)/2;
-        int n3 = n2 + 1;
+            int n2 = start+(end - start)/2;
+            int n3 = n2 + 1;
             
-        divide(n1,n2);
-
-        divide(n3, n4);
-
+            mergeSort(start,n2);
+            mergeSort(n3, end);
+        
+            int startLeft = start;
+            int startRight = n3;
+            
+            int [] newList = new int[end-start+1];
+            int n = 0;
+            
+            // Comparison
+            while ((startLeft < n2+1) && (startRight < end+1))
+            {
+                if (list[startLeft] < list[startRight])
+                {
+                    newList[n] = list[startLeft];
+                    startLeft++;
+                }      
+                else
+                {
+                    newList[n] = list[startRight];               
+                    startRight++;
+                }
+                n++;
+            }
+        
+            // Move remaining values into list
+            while (n<end-start+1)
+            {
+                if (startLeft<n2+1)
+                {
+                    newList[n]=list[startLeft];
+                    startLeft++;
+                    n++;
+                }
+                if (startRight<end+1)
+                {
+                    newList[n]=list[startRight];
+                    startRight++;
+                    n++;
+                }
+            }
+            
+            // Print newList
+            for (int m=0;m<end-start+1;m++)
+            {
+                System.out.print(newList[m]+" ");
+            }
+            System.out.print("\n"); 
+            
+            // Replace the original part with newList
+            int m = 0;
+            while (start < end+1)
+            {
+                list[start] = newList[m];
+                m++;
+                start++;
+            }  
         }
-        
-        
     }
     
    
     
-    public static void mergeSort()//nlog(n)
-    {
-        while ()
-        {
-        divide(0, list.length)
-            
-        }
-        
-    }
+   
     
     public static void print()
     {
