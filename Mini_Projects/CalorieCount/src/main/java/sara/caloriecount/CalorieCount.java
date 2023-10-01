@@ -22,7 +22,7 @@ public class CalorieCount {
         
         
         
-        File file = new File("/Users/saraqin/Downloads/food.csv");
+        File file = new File("food.csv");
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         

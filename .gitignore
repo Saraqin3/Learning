@@ -8,3 +8,5 @@
 /Mini_Projects/TextAnalyzer/target/
 /Mini_Projects/CalorieCount/target/
 /Mini_Projects/SuperStore/target/
+*.DS_Store
+.vscode/
