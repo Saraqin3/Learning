@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<title>Sara's webpage</title>
+<style>
+    body {background-color: blanchedalmond;}
+    h1 {color:blue;}
+    p {color: black;}
+</style>
+<meta charset="UTF-8">
+<meta name="description" content="Sara's html basic practice">
+<meta name="author" content="Sara Qin">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+</body>
+</html>
