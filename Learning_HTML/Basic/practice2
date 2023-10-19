@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.flex-containerHeader {
+displey:flex;
+background-color:white;
+align-items: flex-start;
+
+}
+.flex-containerNAV {
+  display: flex;
+  background-color:white;
+  align-items: flex-start;
+  height: 600px;
+  
+
+  
+}
+
+.flex-containerNAV  .flex-containerMAIN {
+    display: flex;
+    background-color:white;
+    align-items: flex-start;
+    flex-direction: column;
+    flex: 1;
+  
+    
+ 
+}
+
+
+
+.flex-containerHeader > div {
+  margin: 2px;
+  padding: 10px;
+  font-size: 15px;
+  background-color:chocolate;
+  height:100px;
+}
+
+.flex-containerNAV > div {
+  margin: 2px;
+
+  font-size: 15px;
+  background-color:deeppink;
+  height:596px;
+
+  
+}
+
+.flex-containerMAIN {
+gap:4px;
+
+}
+
+.flex-containerMAIN > div {
+  margin: 0px;
+  padding: 10px;
+  font-size: 15px;
+  background-color:green;
+  width:93.5%;
+ 
+
+
+
+}
+
+.flex-containerNAV .flex-leftNav {
+  width: 100px;
+  padding: 10px;
+  height: 576px;
+}
+
+.flex-containerMAIN .flex-Footer{
+background-color: blue;
+flex:0.2;
+
+  
+}
+
+.flex-containerMAIN .flex-topMain{
+flex:1;
+
+
+  
+}
+
+</style>
+</head>
+<body>
+
+<div class="flex-containerHeader">
+  <div>Header</div>
+</div>
+
+<div class="flex-containerNAV">
+  <div class="flex-leftNav">Nav</div>
+  <div class="flex-containerMAIN">
+  	<div class="flex-topMain">Main</div>
+    <div class="flex-Footer">Footer</div>
+    </div>
+  </div>
+
+
+
+
+</body>
+</html>
+
