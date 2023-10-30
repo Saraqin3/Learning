@@ -25,9 +25,7 @@ align-items: flex-start;
     align-items: flex-start;
     flex-direction: column;
     flex: 1;
-  
-    
- 
+
 }
 
 
@@ -53,14 +51,18 @@ align-items: flex-start;
 .flex-containerMAIN {
 gap:4px;
 
+
+
 }
 
 .flex-containerMAIN > div {
   margin: 0px;
-  padding: 10px;
+  
   font-size: 15px;
   background-color:green;
-  width:93.5%;
+width:100%;
+  min-width:0;
+ 
  
 
 
@@ -76,15 +78,23 @@ gap:4px;
 .flex-containerMAIN .flex-Footer{
 background-color: blue;
 flex:0.2;
+display:flex;
 
   
 }
 
 .flex-containerMAIN .flex-topMain{
 flex:1;
-
-
+display:flex;
   
+}
+
+.main{
+padding:10px;
+}
+
+.footer{
+padding:10px;
 }
 
 </style>
@@ -98,8 +108,12 @@ flex:1;
 <div class="flex-containerNAV">
   <div class="flex-leftNav">Nav</div>
   <div class="flex-containerMAIN">
-  	<div class="flex-topMain">Main</div>
-    <div class="flex-Footer">Footer</div>
+  	<div class="flex-topMain">
+    <div class="main"> Main</div>
+    </div>
+    <div class="flex-Footer">
+    <div class="footer">Footer</div>
+    </div>
     </div>
   </div>
 
@@ -108,4 +122,8 @@ flex:1;
 
 </body>
 </html>
+
+
+
+
 
