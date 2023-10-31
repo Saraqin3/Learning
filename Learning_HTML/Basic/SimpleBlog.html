@@ -2,24 +2,58 @@
 <html>
 <style>
 p {
-padding:0px 0px 20px 0px;
-margin:0;
+padding: 0px 0px 20px 0px;
+margin: 0;
 }
 h2 {
-margin:0;
+margin: 0;
+padding: 20px 0px 0px 0px;
 }
-div {
+.main {
 margin: auto;
-width: 250px;
+width: 600px;
+}
+.topRight {
+    position: absolute;
+    left: 900px;
+    top:20px;
+}
+.bottom {
+    display: flex;
+  
+}
+.yellow {
+    display: flex;
+    flex-direction: column;
+    background-color: yellow;
+    margin: 20px;
+    position: relative;
+    left: 100px;
+    width: 230px;
+}
+.red {
+    margin: 10px;
+    background-color: red;
+    padding: 6px;
+    color: aliceblue;
+    font-weight: bold;
+}
+ul.text {
+    list-style-position:outside;
+   margin:10px;
+   text-decoration-line: underline;
+   font-weight: bold;
 }
 </style>
 
-<div>
+<div class="main">
 <h1>My awesome blog</h1>
 
-<img src="/Users/saraqin/Coding/Learning/Learning_HTML/images.jpeg" alt="blog photo">
+<img src="/Users/saraqin/Coding/Learning/Learning_HTML/images.jpeg" alt="blog photo" style="width:600px;height:200px;">
 
 <br>
+<div class="bottom">
+    <div class="left">
 <h2><a href="">Title of the first blog</a></h2>
 <p>By Bunny</p>
 <p>This is first blog abstract...</p>
@@ -28,6 +62,25 @@ width: 250px;
 <h2><a href="">Title of the second blog</a></h2>
 <p>By Piggy</p>
 <p>This is second blog abstract...</p>
+    </div>
+    <div class="right">
+        <div class="yellow">
+            <div class="red">
+                Useful Links
+            </div>
+            <ul class="text">
+                <li>piggylovewriting.com</li>
+                <br>
+                <li>iLoveCoding.org</li>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="topRight">
+    <a href="">Home</a>
+    <a href="">About</a>
 </div>
 
 </html>
