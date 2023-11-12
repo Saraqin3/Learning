@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.calculator {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    background-color: lightblue;
+    padding: 10px;
+    gap: 10px;
+    justify-content: center;
+}
+.calculator > div {
+background-color: white;
+text-align: center;
+padding: 20px;
+}
+
+.screen {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.button {
+cursor: pointer;
+}
+</style>
+</head>
+<script>
+    let pastNum = 0;
+    let currtNum = 0;
+
+    function passInValue(a) {
+    document.getElementById('screen').innerHTML=a;
+    currtNum = a;
+    }
+
+    function plus() {
+    currtNum = currtNum + pastNum;
+    pastNum = currtNum;
+    document.getElementById('screen').innerHTML=pastNum;
+    }
+
+    function equals() {
+    pastNum=pastNum+currtNum;
+    document.getElementById('screen').innerHTML=pastNum;
+    }
+
+    function clears() {
+    pastNum = 0;
+    currtNum = 0;
+    document.getElementById('screen').innerHTML=pastNum;
+    }
+</script>
+<body>
+<div class="calculator">
+    <div class="screen" id="screen"></div>
+    <div class="button" onclick="clears()">Clear</div>
+    <div class="button" onclick="passInValue(1)">1</div>
+    <div class="button" onclick="passInValue(2)">2</div>
+    <div class="button" onclick="passInValue(3)">3</div>
+    <div class="button" onclick="passInValue(4)">4</div>
+    <div class="button" onclick="passInValue(5)">5</div>
+    <div class="button" onclick="passInValue(6)">6</div>
+    <div class="button" onclick="passInValue(7)">7</div>
+    <div class="button" onclick="passInValue(8)">8</div>
+    <div class="button" onclick="passInValue(9)">9</div>
+    <div class="button" onclick="plus()">+</div>
+    <div class="button" onclick="passInValue(0)">0</div>
+    <div class="button" onclick="equals()">=</div>
+</div>
+    
+</body>
+</html>
