@@ -11,7 +11,14 @@ display: grid;
 </style>
 </head>
 <script>
-    
+function addPhoto() {
+document.getElementById("photo").innerHTML = "<div>TEST</div>";
+}
+
+function accessFile() {
+document.getElementById("photo").innerHTML = document.getElementById("123");
+}
+
 </script>
 <body>
 <div class="frame">
@@ -20,11 +27,11 @@ display: grid;
 <p>Username</p>
 <p>Bio</p>
 <button>Edit</button>
-<button>Upload</button>
-<div class="photos">
-<div class="photo"></div>
+<!-- <button onclick="accessFile()">Upload</button> -->
+<input type="file" id="123">
+<div class="photos"> 
+<div id="photo" style="background:red">123</div>
 </div>
-
 </div>
 </div>
     
