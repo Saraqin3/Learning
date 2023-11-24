@@ -10,16 +10,7 @@ display: grid;
 }
 </style>
 </head>
-<script>
-function addPhoto() {
-document.getElementById("photo").innerHTML = "<div>TEST</div>";
-}
 
-function accessFile() {
-document.getElementById("photo").innerHTML = document.getElementById("123");
-}
-
-</script>
 <body>
 <div class="frame">
 <div class="profile">
@@ -28,12 +19,39 @@ document.getElementById("photo").innerHTML = document.getElementById("123");
 <p>Bio</p>
 <button>Edit</button>
 <!-- <button onclick="accessFile()">Upload</button> -->
-<input type="file" id="123">
+<input type="file" id="inputFile">
 <div class="photos"> 
-<div id="photo" style="background:red">123</div>
+<div id="photo" style="background:red">
+<img src="#" id="source" accept="image/png, image/jpeg" alt="Uploaded Image">
+</div>
 </div>
 </div>
 </div>
     
 </body>
+<script>
+    // function addPhoto() {
+    // // document.getElementById("photo").innerHTML = "<div>TEST</div>";
+    // // }
+    
+    // // function accessFile() {
+    // // document.getElementById("photo").innerHTML = document.getElementById("123");
+    // // }
+    
+    
+    document.getElementById("inputFile").addEventListener("change", function(){
+        if (this.files[0]) {
+            var pic = new FileReader();
+            pic.readAsDataURL(this.files[0]);
+            pic.addEventListener("load", function(event){
+                console.log(event.target);
+                document.getElementById("source").setAttribute("src", event.target.result);
+                document.getElementById("source").style.display = 'block';
+        
+            });
+        }    
+    });
+    
+    
+    </script>
 </html>
