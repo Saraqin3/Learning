@@ -2,56 +2,122 @@
 <html>
 <head>
 <style>
-.frame {
-display: flex;
+.photoAndName {
+   display: flex;
+   flex-direction: row;
+   gap: 10px;
+   align-items: center;
 }
+
 .photos {
-display: grid;
+    display: grid;
+    width: 600px;
+    grid-template-columns: 200px 200px 200px;
+}
+.imagePhoto {
+    width: 200px;
+    height: 200px;
+}
+img {
+  display: block;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color: azure;
+}
+
+.modalContent {
+    background-color:antiquewhite;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
 }
 </style>
 </head>
 
+<script>
+    var n=0;
+</script>
 <body>
 <div class="frame">
 <div class="profile">
-<img src="" alt="Profile photo">
-<p>Username</p>
-<p>Bio</p>
-<button>Edit</button>
-<!-- <button onclick="accessFile()">Upload</button> -->
-<input type="file" id="inputFile">
-<div class="photos"> 
-<div id="photo" style="background:red">
-<img src="#" id="source" accept="image/png, image/jpeg" alt="Uploaded Image">
+<div class="photoAndName">
+<img id="originalPic" src="Default_pfp.svg.png" alt="Profile photo" width="70px" height="70px">
+<p id="username">Username</p>
 </div>
+<p>Bio</p>
+<button id="editButton">Edit</button>
+<div id="myModal" class="modal">
+<div class="modalContent">
+    <label for="name">Username:</label><br>
+    <input type="text" id="name"><br>
+    <label for="bio">Bio:</label><br>
+    <input type="text" id="bio"><br><br>
+    <input type="file" id="changePhoto" style="display: none;">
+    <input type="button" value="Update Photo" onclick="document.getElementById('changePhoto').click();"><br><br>
+    <button id="save">Save</button>
+
+</div>
+
+</div>
+<br>
+<input type="file" id="inputFile" style="display: none;">
+<input type="button" value="Upload" onclick="document.getElementById('inputFile').click();">
+<div class="photos" id="photo"> 
 </div>
 </div>
 </div>
     
 </body>
 <script>
-    // function addPhoto() {
-    // // document.getElementById("photo").innerHTML = "<div>TEST</div>";
-    // // }
-    
-    // // function accessFile() {
-    // // document.getElementById("photo").innerHTML = document.getElementById("123");
-    // // }
-    
-    
+   
     document.getElementById("inputFile").addEventListener("change", function(){
         if (this.files[0]) {
             var pic = new FileReader();
             pic.readAsDataURL(this.files[0]);
             pic.addEventListener("load", function(event){
                 console.log(event.target);
-                document.getElementById("source").setAttribute("src", event.target.result);
-                document.getElementById("source").style.display = 'block';
-        
+                document.getElementById("photo").innerHTML = "<img class='imagePhoto' src='' id='" +n+ "' accept='image/png, image/jpeg'>" + document.getElementById("photo").innerHTML;
+                document.getElementById(n).setAttribute("src", event.target.result);
+                n += 1;
             });
+            
         }    
     });
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var editButton = document.getElementById("editButton");
+
+//Get the save button
+var save = document.getElementById("save");
+
+
+// When the user clicks on the button, open the modal
+editButton.onclick = function() {
+  modal.style.display = "block";
+}
+//When user clicks on the save button, do something
+save.onclick = function() {
+    document.getElementById("username").innerHTML = document.getElementById("name").value;
+    document.getElementById("bio").innerHTML = document.getElementById("bio").value;
+    // var newPic = new FileReader();
+    // newPic.readAsDataURL(this.files[0]);
+    document.getElementById("originalPic").setAttribute("src", document.getElementById("changePhoto").readAsDataURL); 
+    modal.style.display = "none";
+}
+
+
+
     
     
-    </script>
+</script>
 </html>
