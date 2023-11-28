@@ -7,17 +7,23 @@
    flex-direction: row;
    gap: 10px;
    align-items: center;
+   border: 1px solid;
+   justify-content: center;
+
 }
 
 .photos {
     display: grid;
     width: 600px;
     grid-template-columns: 200px 200px 200px;
+    gap:1px;
 }
+
 .imagePhoto {
     width: 200px;
     height: 200px;
 }
+
 img {
   display: block;
 }
@@ -38,6 +44,16 @@ img {
     border: 1px solid #888;
     width: 80%;
 }
+
+.frame {
+    margin: auto;
+    width: 50%;
+    border: 3px solid;
+    text-align: center;
+
+
+}
+
 </style>
 </head>
 
@@ -51,8 +67,9 @@ img {
 <img id="originalPic" src="Default_pfp.svg.png" alt="Profile photo" width="70px" height="70px">
 <p id="username">Username</p>
 </div>
-<p>Bio</p>
+<p id="oldBio">Bio</p>
 <button id="editButton">Edit</button>
+<br><br>
 <div id="myModal" class="modal">
 <div class="modalContent">
     <label for="name">Username:</label><br>
@@ -62,13 +79,14 @@ img {
     <input type="file" id="changePhoto" style="display: none;">
     <input type="button" value="Update Photo" onclick="document.getElementById('changePhoto').click();"><br><br>
     <button id="save">Save</button>
-
+    <button id="cancel">Cancel</button>
 </div>
 
 </div>
 <br>
 <input type="file" id="inputFile" style="display: none;">
 <input type="button" value="Upload" onclick="document.getElementById('inputFile').click();">
+<br><br>
 <div class="photos" id="photo"> 
 </div>
 </div>
@@ -99,7 +117,8 @@ var editButton = document.getElementById("editButton");
 
 //Get the save button
 var save = document.getElementById("save");
-
+//Get file
+var file = document.getElementById("changePhoto");
 
 // When the user clicks on the button, open the modal
 editButton.onclick = function() {
@@ -107,14 +126,30 @@ editButton.onclick = function() {
 }
 //When user clicks on the save button, do something
 save.onclick = function() {
-    document.getElementById("username").innerHTML = document.getElementById("name").value;
-    document.getElementById("bio").innerHTML = document.getElementById("bio").value;
-    // var newPic = new FileReader();
-    // newPic.readAsDataURL(this.files[0]);
-    document.getElementById("originalPic").setAttribute("src", document.getElementById("changePhoto").readAsDataURL); 
+    if (document.getElementById("name").value!=""){
+        document.getElementById("username").innerHTML = document.getElementById("name").value;
+    }
+    if (document.getElementById("bio").value!=""){
+    document.getElementById("oldBio").innerHTML = document.getElementById("bio").value;
+    }
+    var newPic = new FileReader();
+    if (file.files[0])
+    {
+        newPic.readAsDataURL(file.files[0]);
+        console.log(newPic);
+        console.log(newPic.result);
+        newPic.addEventListener("load", function(event){
+            document.getElementById("originalPic").setAttribute("src", event.target.result); 
+        });
+    }
     modal.style.display = "none";
 }
+//cancel button
 
+document.getElementById("cancel").addEventListener("click", function(){
+   
+    modal.style.display = "none";
+})
 
 
     
