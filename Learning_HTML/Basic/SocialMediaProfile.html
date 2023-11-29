@@ -7,7 +7,7 @@
    flex-direction: row;
    gap: 30px;
    align-items: center;
-   border: 1px solid;
+   border: 0px solid;
    padding: 5px;
 }
 
@@ -47,7 +47,7 @@ img {
 .frame {
     margin: 60px auto;
     width: 50%;
-    border: 3px solid purple;
+    border: 0px solid purple;
     font-size: 20px;
     color: green;
     font-family:Arial, Helvetica, sans-serif;
@@ -68,7 +68,8 @@ img {
 }
 
 .oldBio {
-    padding: 5px;
+    padding: 0px 5px;
+    margin: 0px;
 }
 
 </style>
@@ -77,41 +78,51 @@ img {
 <script>
     var n=0;
 </script>
-<body>
-<div class="frame">
-<div class="profile">
-<div class="photoAndName">
-<div class="imgBox">
-    <img class="originalPic" id="originalPic" src="Default_pfp.svg.png" alt="Profile photo" width="150px" height="150px">
-</div>
-<p>Username</p>
-<p class="username" id="username">Username</p>
-</div>
-<p class="oldBio">Bio</p>
-<p class="oldBio" id="oldBio">Bio</p>
-<button id="editButton">Edit Profile</button>
-<br><br>
-<div id="myModal" class="modal">
-<div class="modalContent">
-    <label for="name">Username:</label><br>
-    <input type="text" id="name"><br>
-    <label for="bio">Bio:</label><br>
-    <input type="text" id="bio"><br><br>
-    <input type="file" id="changePhoto" style="display: none;">
-    <input type="button" value="Update Photo" onclick="document.getElementById('changePhoto').click();"><br><br>
-    <button id="save">Save</button>
-    <button id="cancel">Cancel</button>
-</div>
 
-</div>
-<br>
-<input type="file" id="inputFile" style="display: none;">
-<input type="button" value="Upload Photo" onclick="document.getElementById('inputFile').click();">
-<br><br>
-<div class="photos" id="photo"> 
-</div>
-</div>
-</div>
+<body>
+    <div class="frame">
+        <div class="profile">
+            <div class="photoAndName">
+                <div class="imgBox">
+                    <img class="originalPic" id="originalPic" src="Default_pfp.svg.png" alt="Profile photo" width="150px" height="150px">
+                </div>
+                <div class="username">
+                    <div style="color: black; font-size: 16px; letter-spacing: 0px;">Username:</div>
+                    <div id="username">Username (editable)</div>
+                </div>
+            </div>
+            <br>
+            <p class="oldBio" style="color: black; font-size: 16px;">Bio:</p>
+            <p class="oldBio" id="oldBio">Bio (editable)</p>
+            <br>
+            <button id="editButton">Edit Profile</button>
+            <div id="myModal" class="modal">
+                <div class="modalContent">
+                <label for="name">Username:</label>
+                <br>
+                <input type="text" id="name">
+                <br>
+                <label for="bio">Bio:</label>
+                <br>
+                <input type="text" id="bio">
+                <br>
+                <br>
+                <input type="file" id="changePhoto" style="display: none;">
+                <input type="button" value="Update Photo" onclick="document.getElementById('changePhoto').click();">
+                <br>
+                <br>
+                <button id="save">Save</button>
+                <button id="cancel">Cancel</button>
+            </div>
+        </div>
+        <br>
+        <input type="file" id="inputFile" style="display: none;">
+        <input type="button" value="Upload Photo" onclick="document.getElementById('inputFile').click();">
+        <br>
+        <br>
+        <hr>
+        <div class="photos" id="photo"></div>
+    </div>
     
 </body>
 <script>
@@ -130,50 +141,44 @@ img {
         }    
     });
 
-// Get the modal
-var modal = document.getElementById("myModal");
+    // Get the modal
+    var modal = document.getElementById("myModal");
 
-// Get the button that opens the modal
-var editButton = document.getElementById("editButton");
+    // Get the button that opens the modal
+    var editButton = document.getElementById("editButton");
 
-//Get the save button
-var save = document.getElementById("save");
-//Get file
-var file = document.getElementById("changePhoto");
+    //Get the save button
+    var save = document.getElementById("save");
+    //Get file
+    var file = document.getElementById("changePhoto");
 
-// When the user clicks on the button, open the modal
-editButton.onclick = function() {
-  modal.style.display = "block";
-}
-//When user clicks on the save button, do something
-save.onclick = function() {
-    if (document.getElementById("name").value!=""){
-        document.getElementById("username").innerHTML = document.getElementById("name").value;
+    // When the user clicks on the button, open the modal
+    editButton.onclick = function() {
+        modal.style.display = "block";
     }
-    if (document.getElementById("bio").value!=""){
-    document.getElementById("oldBio").innerHTML = document.getElementById("bio").value;
+    //When user clicks on the save button, do something
+    save.onclick = function() {
+        if (document.getElementById("name").value!=""){
+                document.getElementById("username").innerHTML = document.getElementById("name").value;
+            }
+        if (document.getElementById("bio").value!=""){
+            document.getElementById("oldBio").innerHTML = document.getElementById("bio").value;
+            }
+        var newPic = new FileReader();
+        if (file.files[0]){
+            newPic.readAsDataURL(file.files[0]);
+            console.log(newPic);
+            console.log(newPic.result);
+            newPic.addEventListener("load", function(event){
+                document.getElementById("originalPic").setAttribute("src", event.target.result); 
+            });
+            }   
+        modal.style.display = "none";
     }
-    var newPic = new FileReader();
-    if (file.files[0])
-    {
-        newPic.readAsDataURL(file.files[0]);
-        console.log(newPic);
-        console.log(newPic.result);
-        newPic.addEventListener("load", function(event){
-            document.getElementById("originalPic").setAttribute("src", event.target.result); 
-        });
-    }
-    modal.style.display = "none";
-}
-//cancel button
-
-document.getElementById("cancel").addEventListener("click", function(){
+    //cancel button
+    document.getElementById("cancel").addEventListener("click", function(){
+        modal.style.display = "none";
+    })
    
-    modal.style.display = "none";
-})
-
-
-    
-    
 </script>
 </html>
