@@ -5,11 +5,10 @@
 .photoAndName {
    display: flex;
    flex-direction: row;
-   gap: 10px;
+   gap: 30px;
    align-items: center;
    border: 1px solid;
-   justify-content: center;
-
+   padding: 5px;
 }
 
 .photos {
@@ -46,12 +45,30 @@ img {
 }
 
 .frame {
-    margin: auto;
+    margin: 60px auto;
     width: 50%;
-    border: 3px solid;
-    text-align: center;
+    border: 3px solid purple;
+    font-size: 20px;
+    color: green;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
+.imgBox {
+    flex-grow: 1;
+    
+}
 
+.username {
+    flex-grow: 2;
+    letter-spacing: 2px;
+}
+
+.originalPic {
+    margin: auto;
+}
+
+.oldBio {
+    padding: 5px;
 }
 
 </style>
@@ -64,11 +81,15 @@ img {
 <div class="frame">
 <div class="profile">
 <div class="photoAndName">
-<img id="originalPic" src="Default_pfp.svg.png" alt="Profile photo" width="70px" height="70px">
-<p id="username">Username</p>
+<div class="imgBox">
+    <img class="originalPic" id="originalPic" src="Default_pfp.svg.png" alt="Profile photo" width="150px" height="150px">
 </div>
-<p id="oldBio">Bio</p>
-<button id="editButton">Edit</button>
+<p>Username</p>
+<p class="username" id="username">Username</p>
+</div>
+<p class="oldBio">Bio</p>
+<p class="oldBio" id="oldBio">Bio</p>
+<button id="editButton">Edit Profile</button>
 <br><br>
 <div id="myModal" class="modal">
 <div class="modalContent">
@@ -85,7 +106,7 @@ img {
 </div>
 <br>
 <input type="file" id="inputFile" style="display: none;">
-<input type="button" value="Upload" onclick="document.getElementById('inputFile').click();">
+<input type="button" value="Upload Photo" onclick="document.getElementById('inputFile').click();">
 <br><br>
 <div class="photos" id="photo"> 
 </div>
