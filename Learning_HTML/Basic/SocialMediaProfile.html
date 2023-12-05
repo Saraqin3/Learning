@@ -31,9 +31,10 @@ img {
     display: none;
     position: fixed;
     z-index: 1;
-    left: 0;
-    top: 0;
     background-color: azure;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
 }
 
 .modalContent {
@@ -41,7 +42,6 @@ img {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
 }
 
 .frame {
@@ -51,6 +51,8 @@ img {
     font-size: 20px;
     color: green;
     font-family:Arial, Helvetica, sans-serif;
+ 
+    
 }
 
 .imgBox {
@@ -81,23 +83,9 @@ img {
 
 <body>
     <div class="frame">
-        <div class="profile">
-            <div class="photoAndName">
-                <div class="imgBox">
-                    <img class="originalPic" id="originalPic" src="Default_pfp.svg.png" alt="Profile photo" width="150px" height="150px">
-                </div>
-                <div class="username">
-                    <div style="color: black; font-size: 16px; letter-spacing: 0px;">Username:</div>
-                    <div id="username">Username (editable)</div>
-                </div>
-            </div>
-            <br>
-            <p class="oldBio" style="color: black; font-size: 16px;">Bio:</p>
-            <p class="oldBio" id="oldBio">Bio (editable)</p>
-            <br>
-            <button id="editButton">Edit Profile</button>
-            <div id="myModal" class="modal">
-                <div class="modalContent">
+        
+        <div id="myModal" class="modal">
+            <div class="modalContent">
                 <label for="name">Username:</label>
                 <br>
                 <input type="text" id="name">
@@ -114,6 +102,28 @@ img {
                 <button id="save">Save</button>
                 <button id="cancel">Cancel</button>
             </div>
+        </div>
+        <div class="profile">
+            
+            <div class="photoAndName">
+                
+                <div class="imgBox">
+                    <img class="originalPic" id="originalPic" src="Default_pfp.svg.png" alt="Profile photo" width="150px" height="150px">
+                </div>
+
+                <div class="username">
+                    <div style="color: black; font-size: 16px; letter-spacing: 0px;">Username:</div>
+                    <div id="username">Username (editable)</div>
+                </div>
+
+               
+            </div>
+            <br>
+            <p class="oldBio" style="color: black; font-size: 16px;">Bio:</p>
+            <p class="oldBio" id="oldBio">Bio (editable)</p>
+            <br>
+            <button id="editButton">Edit Profile</button>
+
         </div>
         <br>
         <input type="file" id="inputFile" style="display: none;">
