@@ -37,7 +37,31 @@ img {
     transform: translate(-50%, -50%);
 }
 
+.photoModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    background-color: azure;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modalLine {
+    border-top: 1px solid #ccc;
+    margin: 15px 0;
+}
+
 .modalContent {
+    background-color:antiquewhite;
+    /*
+    margin: 15% auto;
+    padding: 20px;
+    */
+    border: 1px solid #888;
+}
+
+.photoModalContent {
     background-color:antiquewhite;
     margin: 15% auto;
     padding: 20px;
@@ -67,12 +91,15 @@ img {
 
 .originalPic {
     margin: auto;
+    border-radius: 50%;
 }
 
 .oldBio {
     padding: 0px 5px;
     margin: 0px;
 }
+
+
 
 </style>
 </head>
@@ -83,7 +110,24 @@ img {
 
 <body>
     <div class="frame">
-        
+        <div id="photoModal" class="photoModal">
+            <div class="photoModalContent">
+                <img class="picInModal" id="picInModal" src="" alt="Picture in modal" width="70px" height="70px">
+                <hr>
+                <div class="modalLine"></div>
+                <input type="file" id="changePhoto" style="display: none;">
+                <input type="button" value="Update" onclick="document.getElementById('changePhoto').click();">
+                <hr>
+                <button id="delete">Delete</button>
+                <hr>
+                <button id="cancel">Cancel</button>
+
+
+
+            </div>
+        </div>
+
+
         <div id="myModal" class="modal">
             <div class="modalContent">
                 <label for="name">Username:</label>
@@ -93,10 +137,6 @@ img {
                 <label for="bio">Bio:</label>
                 <br>
                 <input type="text" id="bio">
-                <br>
-                <br>
-                <input type="file" id="changePhoto" style="display: none;">
-                <input type="button" value="Update Photo" onclick="document.getElementById('changePhoto').click();">
                 <br>
                 <br>
                 <button id="save">Save</button>
@@ -135,8 +175,14 @@ img {
     </div>
     
 </body>
+
+
+
+
+
+
 <script>
-   
+   //Upload photo button triggers function
     document.getElementById("inputFile").addEventListener("change", function(){
         if (this.files[0]) {
             var pic = new FileReader();
@@ -151,6 +197,10 @@ img {
         }    
     });
 
+
+//---------------------
+
+
     // Get the modal
     var modal = document.getElementById("myModal");
 
@@ -159,8 +209,7 @@ img {
 
     //Get the save button
     var save = document.getElementById("save");
-    //Get file
-    var file = document.getElementById("changePhoto");
+   
 
     // When the user clicks on the button, open the modal
     editButton.onclick = function() {
@@ -174,21 +223,56 @@ img {
         if (document.getElementById("bio").value!=""){
             document.getElementById("oldBio").innerHTML = document.getElementById("bio").value;
             }
-        var newPic = new FileReader();
-        if (file.files[0]){
-            newPic.readAsDataURL(file.files[0]);
-            console.log(newPic);
-            console.log(newPic.result);
-            newPic.addEventListener("load", function(event){
-                document.getElementById("originalPic").setAttribute("src", event.target.result); 
-            });
-            }   
+        
         modal.style.display = "none";
     }
     //cancel button
     document.getElementById("cancel").addEventListener("click", function(){
         modal.style.display = "none";
     })
+
+
+//---------------------
+
+
+    //Get the photoModal
+    var photoModal = document.getElementById("photoModal");
+
+    //Obtain profile image source
+    var imgElement = document.getElementById("originalPic");
+    var imgURL = imgElement.getAttribute('src');
+
+    //when clicking on the profile photo, modal opens
+    document.getElementById("originalPic").addEventListener("click", function(){
+        document.getElementById("picInModal").setAttribute("src", imgURL);
+        photoModal.style.display = "block";
+    })
+
+    //update button trigger something
+    //Get file
+
+    var file = document.getElementById("changePhoto");
+    document.getElementById("changePhoto").addEventListener("change", function(){
+
+        var newPic = new FileReader();
+        if (file.files[0]){
+            newPic.readAsDataURL(file.files[0]);
+            /*console.log(newPic);
+            console.log(newPic.result);*/
+            newPic.addEventListener("load", function(event){
+                document.getElementById("originalPic").setAttribute("src", event.target.result); 
+            });
+            }
+            
+    })
+
+    
+            
+            
+
+
+
+
    
 </script>
 </html>
