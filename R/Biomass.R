@@ -1,13 +1,12 @@
 
-
-
-
 ```{r}
 #split biomass into different sheets
 library(tidyr)
 library(writexl)
 library(purrr)
 library(dplyr)
+library(readxl)
+
 dataBio <- read.csv("2023_12_07_Biomass Bacterial Pellet_post RapidAIM pH.csv", sep = ",")
 
 
@@ -40,39 +39,52 @@ for (i in 1:length(split_data_separated)){
   extracted_data2 <- split_data_separated[[i]] %>% select(all_of(columns_to_extract2))
   extracted_data3 <- split_data_separated[[i]] %>% select(all_of(columns_to_extract3))
  
+  colnames(extracted_data1)[3] <- "Treatment"
+  colnames(extracted_data2)[3] <- "Treatment"
+  colnames(extracted_data3)[3] <- "Treatment"
+ 
+  colnames(extracted_data1)[4] <- "Biomass_ug"
+  colnames(extracted_data2)[4] <- "Biomass_ug"
+  colnames(extracted_data3)[4] <- "Biomass_ug"
+ 
   plateNum1 <- as.character(extracted_data1[2, 1])
   patientNum1 <- as.character(extracted_data1[2, 2])
-  combined1 <- paste (plateNum1, patientNum1)
-  name1 <- combined1
+  combined1 <- paste0 (plateNum1, patientNum1)
+  name1 <- paste("P", combined1, sep = "")
  
   plateNum2 <- as.character(extracted_data2[2, 1])
   patientNum2 <- as.character(extracted_data2[2, 2])
-  combined2 <- paste (plateNum2, patientNum2)
-  name2 <- combined2
+  combined2 <- paste0 (plateNum2, patientNum2)
+  name2 <- paste("P", combined2, sep = "")
  
   plateNum3 <- as.character(extracted_data3[2, 1])
   patientNum3 <- as.character(extracted_data3[2, 2])
-  combined3 <- paste (plateNum3, patientNum3)
-  name3 <- combined3
+  combined3 <- paste0 (plateNum3, patientNum3)
+  name3 <- paste("P", combined3, sep = "")
  
   assign(name1, extracted_data1)
   assign(name2, extracted_data2)
   assign(name3, extracted_data3)
  
-  split_data_extracted[[combined1]] <- extracted_data1
-  split_data_extracted[[combined2]] <- extracted_data2
-  split_data_extracted[[combined3]] <- extracted_data3
+  split_data_extracted[[name1]] <- extracted_data1
+  split_data_extracted[[name2]] <- extracted_data2
+  split_data_extracted[[name3]] <- extracted_data3
 
- 
- 
 }
 
+excel_file_path <- "V49.xlsx"
+v49Data <- lapply(excel_sheets(excel_file_path), function(sheet) read_excel(excel_file_path, sheet = sheet))
+
+names(v49Data) <- excel_sheets(excel_file_path)
+joinedFile <- c(split_data_extracted, v49Data)
 
 
 write_xlsx(split_data_separated, path = "biomass split and separate.xlsx")
 write_xlsx(split_data_extracted, path = "biomass extracted.xlsx")
+write_xlsx(joinedFile, path = "biomass joined.xlsx")
 
 
 
 
 ```
+

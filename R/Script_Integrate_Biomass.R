@@ -20,7 +20,7 @@ split_data_result <- split_data
 
 combined_data <- split_data
 
-excel_file_path <- "biomass extracted.xlsx"
+excel_file_path <- "biomass joined.xlsx"
 bioData <- lapply(excel_sheets(excel_file_path), function(sheet) read_excel(excel_file_path, sheet = sheet))
  
 names(bioData) <- excel_sheets(excel_file_path)
@@ -95,6 +95,7 @@ for (i in 1:length(split_data)){
   #dev.copy(png, filename = paste0 (combined, ".png"))
   #dev.off()
 }
+
 
  
 write_xlsx(split_data, path = "amino acids split.xlsx")
