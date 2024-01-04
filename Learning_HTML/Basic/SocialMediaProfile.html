@@ -47,6 +47,26 @@ img {
     transform: translate(-50%, -50%);
 }
 
+.photoConfirmationModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    background-color: azure;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.photoDeleteModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    background-color: azure;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .modalLine {
     border-top: 1px solid #ccc;
     margin: 15px 0;
@@ -99,6 +119,10 @@ img {
     margin: 0px;
 }
 
+.picInModal {
+    border-radius: 50%;
+}
+
 
 
 </style>
@@ -121,9 +145,30 @@ img {
                 <button id="delete">Delete</button>
                 <hr>
                 <button id="cancel">Cancel</button>
+            </div>
+        </div>
 
+        <div id="photoConfirmationModal" class="photoConfirmationModal">
+            <div class="photoConfirmationModalContent">
+                <div class="questionUpdatePhoto">You want to change your profile photo to the following?</div>
+                <hr>
+                <img class="picConfirmation" id="picConfirmation" src="" alt="Profile Pic Confirmation" width="70px" height="70px">
+                <hr>
+                <button id="yesConfirmation">Yes</button>
+                <hr>
+                <button id="noConfirmation">No</button>
+            </div>
+        </div>
 
-
+        <div id="photoDeleteModal" class="photoDeleteModal">
+            <div class="photoDeleteModalContent">
+                <div class="questionDeletePhoto">You want to delete following photo?</div>
+                <hr>
+                <img class="picDelete" id="picDelete" src="" alt="Profile Pic Delete" width="70px" height="70px">
+                <hr>
+                <button id="yesDelete">Yes</button>
+                <hr>
+                <button id="noDelete">No</button>
             </div>
         </div>
 
@@ -140,9 +185,10 @@ img {
                 <br>
                 <br>
                 <button id="save">Save</button>
-                <button id="cancel">Cancel</button>
+                <button id="cancel2">Cancel</button>
             </div>
         </div>
+
         <div class="profile">
             
             <div class="photoAndName">
@@ -150,17 +196,14 @@ img {
                 <div class="imgBox">
                     <img class="originalPic" id="originalPic" src="Default_pfp.svg.png" alt="Profile photo" width="150px" height="150px">
                 </div>
-
                 <div class="username">
-                    <div style="color: black; font-size: 16px; letter-spacing: 0px;">Username:</div>
-                    <div id="username">Username (editable)</div>
+                    <div id="username">Username</div>
                 </div>
 
                
             </div>
             <br>
-            <p class="oldBio" style="color: black; font-size: 16px;">Bio:</p>
-            <p class="oldBio" id="oldBio">Bio (editable)</p>
+            <p class="oldBio" id="oldBio">This person is too lazy to write anything...</p>
             <br>
             <button id="editButton">Edit Profile</button>
 
@@ -201,7 +244,7 @@ img {
 //---------------------
 
 
-    // Get the modal
+    // Get the profile edit modal
     var modal = document.getElementById("myModal");
 
     // Get the button that opens the modal
@@ -227,7 +270,7 @@ img {
         modal.style.display = "none";
     }
     //cancel button
-    document.getElementById("cancel").addEventListener("click", function(){
+    document.getElementById("cancel2").addEventListener("click", function(){
         modal.style.display = "none";
     })
 
@@ -237,36 +280,79 @@ img {
 
     //Get the photoModal
     var photoModal = document.getElementById("photoModal");
+    var confirmationModal = document.getElementById("photoConfirmationModal")
 
     //Obtain profile image source
     var imgElement = document.getElementById("originalPic");
-    var imgURL = imgElement.getAttribute('src');
+    var originalURL = imgElement.getAttribute('src');
 
     //when clicking on the profile photo, modal opens
     document.getElementById("originalPic").addEventListener("click", function(){
+        //Obtain profile image source
+        //var imgElement = document.getElementById("originalPic");
+        var imgURL = imgElement.getAttribute('src');
         document.getElementById("picInModal").setAttribute("src", imgURL);
         photoModal.style.display = "block";
     })
 
     //update button trigger something
     //Get file
-
-    var file = document.getElementById("changePhoto");
+    
     document.getElementById("changePhoto").addEventListener("change", function(){
-
+        var file = document.getElementById("changePhoto");
         var newPic = new FileReader();
         if (file.files[0]){
             newPic.readAsDataURL(file.files[0]);
             /*console.log(newPic);
             console.log(newPic.result);*/
             newPic.addEventListener("load", function(event){
-                document.getElementById("originalPic").setAttribute("src", event.target.result); 
+                document.getElementById("picConfirmation").setAttribute("src", event.target.result);
+                photoModal.style.display = "none"
+                confirmationModal.style.display = "block"
             });
             }
-            
+        file.value = "";      
     })
 
-    
+    //picModal delete button
+    document.getElementById("delete").addEventListener("click", function(){
+        var imgURL = imgElement.getAttribute('src');
+        document.getElementById("picDelete").setAttribute("src", imgURL);
+        photoModal.style.display = "none"
+        photoDeleteModal.style.display = "block"
+    })
+
+    //picModal cancel button
+    document.getElementById("cancel").addEventListener("click", function(){
+        photoModal.style.display = "none"
+    })
+
+    //Confirmation yes
+
+    var picConfirmation = document.getElementById("picConfirmation");
+    document.getElementById("yesConfirmation").addEventListener("click", function(){
+        var picConfirmationURL = picConfirmation.getAttribute('src');
+        document.getElementById("originalPic").setAttribute("src", picConfirmationURL);
+        photoConfirmationModal.style.display = "none"
+    })
+
+    //Confirmation no
+    document.getElementById("noConfirmation").addEventListener("click", function(){
+        photoConfirmationModal.style.display = "none"
+    })
+
+    //Delete yes
+    document.getElementById("yesDelete").addEventListener("click", function(){
+        document.getElementById("originalPic").setAttribute("src", originalURL);
+        photoDeleteModal.style.display = "none"
+    })
+
+    //Delete no
+    document.getElementById("noDelete").addEventListener("click", function(){
+        photoDeleteModal.style.display = "none"
+    })
+
+
             
             
 
