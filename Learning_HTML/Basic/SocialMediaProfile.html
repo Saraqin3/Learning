@@ -259,12 +259,23 @@ img {
         modal.style.display = "block";
     }
     //When user clicks on the save button, do something
+    var originalUsername = document.getElementById("username").innerHTML;
+    var orginalBio = document.getElementById("oldBio").innerHTML;
     save.onclick = function() {
         if (document.getElementById("name").value!=""){
                 document.getElementById("username").innerHTML = document.getElementById("name").value;
             }
+        else
+            {
+                document.getElementById("username").innerHTML = originalUsername;
+            }
+
         if (document.getElementById("bio").value!=""){
-            document.getElementById("oldBio").innerHTML = document.getElementById("bio").value;
+                document.getElementById("oldBio").innerHTML = document.getElementById("bio").value;
+            }
+        else
+            {
+                document.getElementById("oldBio").innerHTML = orginalBio;
             }
         
         modal.style.display = "none";
