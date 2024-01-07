@@ -269,7 +269,6 @@ img {
             {
                 document.getElementById("username").innerHTML = originalUsername;
             }
-
         if (document.getElementById("bio").value!=""){
                 document.getElementById("oldBio").innerHTML = document.getElementById("bio").value;
             }
@@ -357,10 +356,12 @@ img {
         document.getElementById("originalPic").setAttribute("src", originalURL);
         photoDeleteModal.style.display = "none"
     })
+    
 
-    //Delete no
+    //Delete no .
     document.getElementById("noDelete").addEventListener("click", function(){
         photoDeleteModal.style.display = "none"
+
     })
 
 
