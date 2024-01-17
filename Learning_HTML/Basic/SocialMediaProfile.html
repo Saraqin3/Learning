@@ -28,44 +28,51 @@ img {
   display: block;
 }
 
-.modal {
+.mymodal {
     display: none;
     position: fixed;
     z-index: 1;
-    background-color: azure;
+    background-color: white;
     top:50%;
     left:50%;
     transform: translate(-50%, -50%);
+    border: grey;
+    border-radius: 15px;
+    padding: 20px;
 }
 
 .photoModal {
     display: none;
     position: fixed;
     z-index: 1;
-    background-color: azure;
+    background-color: white;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border-radius: 15px;
+    padding: 30px;
 }
 
 .photoConfirmationModal {
     display: none;
     position: fixed;
     z-index: 1;
-    background-color: azure;
+    background-color: white;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border-radius: 15px;
 }
 
 .photoDeleteModal {
     display: none;
     position: fixed;
     z-index: 1;
-    background-color: azure;
+    background-color: white;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border-radius: 15px;
 }
 
 .modalLine {
@@ -73,25 +80,24 @@ img {
     margin: 15px 0;
 }
 
-.modalContent {
-    background-color:antiquewhite;
-    /*
-    margin: 15% auto;
-    padding: 20px;
-    */
-    border: 1px solid #888;
+.mymodalContent {
+    background-color:white;
+
+
+    padding: 70px;
+  
 }
 
 .photoModalContent {
-    background-color:antiquewhite;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
+    background-color:white;
+    
+    padding: 60px;
+    
 }
 
 .frame {
     margin: auto; 
-   
+    max-width: 800px;
     border: 0px solid purple;
     font-size: 20px;
     color: black;
@@ -131,7 +137,10 @@ img {
 .oldBio {
     font-size: 17px;
     margin: 0px;
-    overflow: hidden;
+    word-break: break-all;
+    width: 550px;
+    flex-basis: 40px;
+    height: 40px;
 }
 
 .picInModal {
@@ -152,6 +161,16 @@ img {
     color: black;
 }
 
+.modalBackgroundColorDark {
+    display: none;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.6);
+}
+
 
 
 
@@ -163,6 +182,11 @@ img {
 </script>
 
 <body>
+    <div class="modalBackgroundColorDark" id="modalBackgroundColorDark">
+
+
+
+    </div>
     
     <div class="frame">
         <div id="photoModal" class="photoModal">
@@ -204,15 +228,15 @@ img {
         </div>
 
 
-        <div id="myModal" class="modal">
-            <div class="modalContent">
+        <div id="myModal" class="mymodal">
+            <div class="mymodalContent">
                 <label for="name">Username:</label>
                 <br>
                 <input type="text" id="name" maxlength="10">
                 <br>
                 <label for="bio">Bio:</label>
                 <br>
-                <input type="text" id="bio">
+                <input type="text" id="bio" maxlength="130">
                 <br>
                 <br>
                 <button id="save">Save</button>
@@ -244,9 +268,6 @@ img {
             
         </div>
         <br>
-        
-        <br>
-        <br>
         <hr>
         <div class="photos" id="photo"></div>
     </div>
@@ -275,6 +296,7 @@ img {
         }    
     });
 
+    var modalBackground = document.getElementById("modalBackgroundColorDark");
 
 //---------------------
 
@@ -292,6 +314,7 @@ img {
     // When the user clicks on the button, open the modal
     editButton.onclick = function() {
         modal.style.display = "block";
+        modalBackground.style.display = "block";
     }
     //When user clicks on the save button, do something
     var originalUsername = document.getElementById("username").innerHTML;
@@ -311,11 +334,13 @@ img {
             {
                 document.getElementById("oldBio").innerHTML = orginalBio;
             }
-        
+
+        modalBackground.style.display = "none";
         modal.style.display = "none";
     }
     //cancel button
     document.getElementById("cancel2").addEventListener("click", function(){
+        modalBackground.style.display = "none";
         modal.style.display = "none";
     })
 
@@ -338,6 +363,7 @@ img {
         var imgURL = imgElement.getAttribute('src');
         document.getElementById("picInModal").setAttribute("src", imgURL);
         photoModal.style.display = "block";
+        modalBackground.style.display = "block";
     })
 
     //update button trigger something
@@ -369,7 +395,9 @@ img {
 
     //picModal cancel button
     document.getElementById("cancel").addEventListener("click", function(){
+        modalBackground.style.display = "none";
         photoModal.style.display = "none"
+
     })
 
     //Confirmation yes
@@ -378,34 +406,32 @@ img {
     document.getElementById("yesConfirmation").addEventListener("click", function(){
         var picConfirmationURL = picConfirmation.getAttribute('src');
         document.getElementById("originalPic").setAttribute("src", picConfirmationURL);
+        modalBackground.style.display = "none";
         photoConfirmationModal.style.display = "none"
     })
 
     //Confirmation no
     document.getElementById("noConfirmation").addEventListener("click", function(){
+        modalBackground.style.display = "none";
         photoConfirmationModal.style.display = "none"
     })
 
     //Delete yes
     document.getElementById("yesDelete").addEventListener("click", function(){
         document.getElementById("originalPic").setAttribute("src", originalURL);
+        modalBackground.style.display = "none";
         photoDeleteModal.style.display = "none"
     })
     
 
     //Delete no
     document.getElementById("noDelete").addEventListener("click", function(){
+        modalBackground.style.display = "none";
         photoDeleteModal.style.display = "none"
 
     })
 
 
-            
-            
-
-
-
-
-   
+ 
 </script>
 </html>
