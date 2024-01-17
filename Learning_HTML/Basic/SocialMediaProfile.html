@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 .photoAndName {
    display: flex;
@@ -89,8 +90,8 @@ img {
 }
 
 .frame {
-    margin: 60px auto;
-    width: 50%;
+    margin: auto; 
+   
     border: 0px solid purple;
     font-size: 20px;
     color: black;
@@ -118,6 +119,7 @@ img {
     margin: 0 20px 0 0;
     font-size: 17px;
     font-weight: bold;
+    width: 100px;
 }
 
 .originalPic {
@@ -129,6 +131,7 @@ img {
 .oldBio {
     font-size: 17px;
     margin: 0px;
+    overflow: hidden;
 }
 
 .picInModal {
@@ -140,12 +143,16 @@ img {
     border: 2px gray;
     padding: 8px 15px;
     font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .button:hover {
     background-color: gainsboro;
     color: black;
 }
+
+
 
 
 </style>
@@ -156,6 +163,7 @@ img {
 </script>
 
 <body>
+    
     <div class="frame">
         <div id="photoModal" class="photoModal">
             <div class="photoModalContent">
@@ -200,7 +208,7 @@ img {
             <div class="modalContent">
                 <label for="name">Username:</label>
                 <br>
-                <input type="text" id="name">
+                <input type="text" id="name" maxlength="10">
                 <br>
                 <label for="bio">Bio:</label>
                 <br>
@@ -242,6 +250,7 @@ img {
         <hr>
         <div class="photos" id="photo"></div>
     </div>
+    
     
 </body>
 
