@@ -38,7 +38,18 @@ img {
     transform: translate(-50%, -50%);
     border: grey;
     border-radius: 15px;
-    padding: 20px;
+    height: 400px;
+}
+
+.mymodalContent {
+    background-color:white;
+    width: 400px;
+    border-radius: 15px;
+    text-align: center; 
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .photoModal {
@@ -50,7 +61,21 @@ img {
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 15px;
-    padding: 30px;
+    height: 400px;
+    
+}
+
+.photoModalContent {
+    background-color:white;
+    width: 400px;
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    
 }
 
 .photoConfirmationModal {
@@ -62,6 +87,18 @@ img {
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 15px;
+    height: 400px;
+}
+
+.photoConfirmationModalContent {
+    background-color:white;
+    width: 400px;
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .photoDeleteModal {
@@ -73,29 +110,28 @@ img {
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 15px;
+    height: 400px;
+}
+
+.photoDeleteModalContent {
+    background-color:white;
+    width: 400px;
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .modalLine {
-    border-top: 1px solid #ccc;
-    margin: 15px 0;
+    border-top: 1px solid #696767;
+    margin: 0;
 }
 
-.mymodalContent {
-    background-color:white;
-    width: 300px;
-    text-align: center;
 
 
-    padding: 70px;
-  
-}
 
-.photoModalContent {
-    background-color:white;
-    
-    padding: 60px;
-    
-}
 
 .frame {
     margin: auto; 
@@ -136,6 +172,10 @@ img {
     padding: 10px 30px;
 }
 
+.originalPic:hover {
+    cursor:pointer;
+}
+
 .oldBio {
     font-size: 17px;
     margin: 0px;
@@ -147,6 +187,10 @@ img {
 
 .picInModal {
     border-radius: 50%;
+    margin: auto;
+    width:100px;
+    height:100px;
+    padding: 0 0 20px;
 }
 
 .button {
@@ -158,9 +202,24 @@ img {
     overflow: hidden;
 }
 
+.buttonInModal {
+    background-color: white;
+    border: none;
+    font-size: 20px;
+    color: rgba(28, 118, 207, 0.872)
+    font-weight: bold;
+    width: 100%;
+    height: 60px;
+}
+
+.buttonInModal:hover {
+    cursor: pointer;
+}
+
 .button:hover {
     background-color: gainsboro;
     color: black;
+    cursor: pointer;
 }
 
 .modalBackgroundColorDark {
@@ -173,7 +232,10 @@ img {
     background-color:rgba(0,0,0,0.6);
 }
 
-
+.question {
+    height: 60px;
+    text-align: center;
+}
 
 
 </style>
@@ -192,40 +254,39 @@ img {
     
     <div class="frame">
         <div id="photoModal" class="photoModal">
-            <div class="photoModalContent">
-                <img class="picInModal" id="picInModal" src="" alt="Picture in modal" width="70px" height="70px">
-                <hr>
+            <div class="photoModalContent">          
+                <img class="picInModal" id="picInModal" src="" alt="Picture in modal">
                 <div class="modalLine"></div>
                 <input type="file" id="changePhoto" style="display: none;">
-                <input type="button" value="Update" onclick="document.getElementById('changePhoto').click();">
-                <hr>
-                <button id="delete">Delete</button>
-                <hr>
-                <button id="cancel">Cancel</button>
+                <input class="buttonInModal" type="button" value="Update" onclick="document.getElementById('changePhoto').click();">
+                <div class="modalLine"></div>
+                <button class="buttonInModal" id="delete">Delete</button>
+                <div class="modalLine"></div>
+                <button class="buttonInModal" id="cancel">Cancel</button>
             </div>
         </div>
 
         <div id="photoConfirmationModal" class="photoConfirmationModal">
             <div class="photoConfirmationModalContent">
-                <div class="questionUpdatePhoto">You want to change your profile photo to the following?</div>
-                <hr>
-                <img class="picConfirmation" id="picConfirmation" src="" alt="Profile Pic Confirmation" width="70px" height="70px">
-                <hr>
-                <button id="yesConfirmation">Yes</button>
-                <hr>
-                <button id="noConfirmation">No</button>
+                <img class="picInModal" id="picConfirmation" src="" alt="Profile Pic Confirmation">
+                <div class="modalLine"></div>
+                <div class="question">You want to change your profile photo?</div>
+                <div class="modalLine"></div>
+                <button class="buttonInModal" id="yesConfirmation">Yes</button>
+                <div class="modalLine"></div>
+                <button class="buttonInModal" id="noConfirmation">No</button>
             </div>
         </div>
 
         <div id="photoDeleteModal" class="photoDeleteModal">
             <div class="photoDeleteModalContent">
-                <div class="questionDeletePhoto">You want to delete following photo?</div>
-                <hr>
-                <img class="picDelete" id="picDelete" src="" alt="Profile Pic Delete" width="70px" height="70px">
-                <hr>
-                <button id="yesDelete">Yes</button>
-                <hr>
-                <button id="noDelete">No</button>
+                <img class="picInModal" id="picDelete" src="" alt="Profile Pic Delete">
+                <div class="modalLine"></div>
+                <div class="question">You want to delete photo?</div>
+                <div class="modalLine"></div>
+                <button class="buttonInModal" id="yesDelete">Yes</button>
+                <div class="modalLine"></div>
+                <button class="buttonInModal" id="noDelete">No</button>
             </div>
         </div>
 
@@ -239,11 +300,11 @@ img {
                 <br>
                 <label for="bio">Bio:</label>
                 <br>
-                <input type="text" id="bio" maxlength="130" size="130">
+                <textarea id="bio" rows="3" cols="30" maxlength="290"></textarea>
                 <br>
                 <br>
-                <button id="save">Save</button>
-                <button id="cancel2">Cancel</button>
+                <button class="buttonInModal" id="save">Save</button>
+                <button class="buttonInModal" id="cancel2">Cancel</button>
             </div>
         </div>
 
