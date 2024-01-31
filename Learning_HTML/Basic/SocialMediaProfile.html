@@ -14,9 +14,10 @@
 
 .photos {
     display: grid;
+    grid-gap: 15px;
     width: 600px;
     grid-template-columns: 200px 200px 200px;
-    gap:1px;
+    
 }
 
 .imagePhoto {
@@ -43,7 +44,7 @@ img {
 
 .mymodalContent {
     background-color:white;
-    width: 400px;
+    width: 300px;
     border-radius: 15px;
     text-align: center; 
     position: relative;
@@ -67,7 +68,7 @@ img {
 
 .photoModalContent {
     background-color:white;
-    width: 400px;
+    width: 300px;
     border-radius: 15px;
     text-align: center;
     position: relative;
@@ -92,7 +93,7 @@ img {
 
 .photoConfirmationModalContent {
     background-color:white;
-    width: 400px;
+    width: 300px;
     border-radius: 15px;
     text-align: center;
     position: relative;
@@ -115,7 +116,7 @@ img {
 
 .photoDeleteModalContent {
     background-color:white;
-    width: 400px;
+    width: 300px;
     border-radius: 15px;
     text-align: center;
     position: relative;
@@ -187,10 +188,9 @@ img {
 
 .picInModal {
     border-radius: 50%;
-    margin: auto;
+    margin: 0 auto 20px;
     width:100px;
     height:100px;
-    padding: 0 0 20px;
 }
 
 .button {
@@ -205,8 +205,8 @@ img {
 .buttonInModal {
     background-color: white;
     border: none;
-    font-size: 20px;
-    color: rgba(28, 118, 207, 0.872)
+    font-size: 16px;
+    color: #0D47A1;
     font-weight: bold;
     width: 100%;
     height: 60px;
@@ -233,8 +233,8 @@ img {
 }
 
 .question {
-    height: 60px;
-    text-align: center;
+    padding: 18px;
+    
 }
 
 
@@ -258,9 +258,9 @@ img {
                 <img class="picInModal" id="picInModal" src="" alt="Picture in modal">
                 <div class="modalLine"></div>
                 <input type="file" id="changePhoto" style="display: none;">
-                <input class="buttonInModal" type="button" value="Update" onclick="document.getElementById('changePhoto').click();">
+                <input class="buttonInModal" type="button" value="Upload Photo" onclick="document.getElementById('changePhoto').click();">
                 <div class="modalLine"></div>
-                <button class="buttonInModal" id="delete">Delete</button>
+                <button class="buttonInModal" id="delete">Delete Photo</button>
                 <div class="modalLine"></div>
                 <button class="buttonInModal" id="cancel">Cancel</button>
             </div>
@@ -354,6 +354,9 @@ img {
                 console.log(event.target);
                 document.getElementById("photo").innerHTML = "<img class='imagePhoto' src='' id='" +n+ "' accept='image/png, image/jpeg'>" + document.getElementById("photo").innerHTML;
                 document.getElementById(n).setAttribute("src", event.target.result);
+                document.getElementById(n).setAttribute("onclick", () => {
+                    const img = document.getElementById(n).getAttribute("src");
+                });
                 n += 1;
             });
             
