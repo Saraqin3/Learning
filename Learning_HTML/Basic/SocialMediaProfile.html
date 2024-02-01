@@ -284,6 +284,7 @@ img {
             <div class="ImgDisplayModalContent" id="ImgDisplayModalContent">
                 <img class="ImageInDisplay" id="ImageInDisplay" src="" alt="Image in display">
             </div>
+
         </div> 
 
         <div id="photoModal" class="photoModal">
@@ -382,6 +383,7 @@ img {
     document.getElementById("inputFile").addEventListener("change", function(){
         if (this.files[0]) {
             var pic = new FileReader();
+            var modalInDisplay = document.getElementById("ImgDisplayModal");
             pic.readAsDataURL(this.files[0]);
             pic.addEventListener("load", function(event){
                 console.log(event.target);
@@ -389,6 +391,8 @@ img {
                 document.getElementById(n).setAttribute("src", event.target.result);
                 document.getElementById(n).setAttribute("onclick", () => {
                     const imgSrc = document.getElementById(n).getAttribute("src");
+                    document.getElementById(ImageInDisplay).setAttribute("src", imgSrc);
+                    modalInDisplay.style.display = "block";
                 });
                 n += 1;
             });
