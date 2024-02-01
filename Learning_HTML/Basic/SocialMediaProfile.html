@@ -3,6 +3,35 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
+.ImgDisplayModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    background-color: white;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    border: grey;
+    border-radius: 15px;
+    
+}
+
+.ImgDisplayModalContent {
+    background-color:white;
+    border-radius: 15px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ImageInDisplay {
+    width:800px;
+    height: 800px;
+    padding: 20px;
+}
+
+
 .photoAndName {
    display: flex;
    flex-direction: row;
@@ -247,12 +276,16 @@ img {
 
 <body>
     <div class="modalBackgroundColorDark" id="modalBackgroundColorDark">
-
-
-
     </div>
     
     <div class="frame">
+
+        <div class="ImgDisplayModal" id="ImgDisplayModal">
+            <div class="ImgDisplayModalContent" id="ImgDisplayModalContent">
+                <img class="ImageInDisplay" id="ImageInDisplay" src="" alt="Image in display">
+            </div>
+        </div> 
+
         <div id="photoModal" class="photoModal">
             <div class="photoModalContent">          
                 <img class="picInModal" id="picInModal" src="" alt="Picture in modal">
@@ -355,7 +388,7 @@ img {
                 document.getElementById("photo").innerHTML = "<img class='imagePhoto' src='' id='" +n+ "' accept='image/png, image/jpeg'>" + document.getElementById("photo").innerHTML;
                 document.getElementById(n).setAttribute("src", event.target.result);
                 document.getElementById(n).setAttribute("onclick", () => {
-                    const img = document.getElementById(n).getAttribute("src");
+                    const imgSrc = document.getElementById(n).getAttribute("src");
                 });
                 n += 1;
             });
