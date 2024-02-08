@@ -17,7 +17,7 @@
 }
 
 .ImgDisplayModalContent {
-    background-color:white;
+    background-color:rgb(144, 61, 61);
     border-radius: 15px;
     position: relative;
     top: 50%;
@@ -46,6 +46,7 @@
     grid-gap: 15px;
     width: 600px;
     grid-template-columns: 200px 200px 200px;
+    margin: 20px auto;
     
 }
 
@@ -383,16 +384,22 @@ img {
     document.getElementById("inputFile").addEventListener("change", function(){
         if (this.files[0]) {
             var pic = new FileReader();
-            var modalInDisplay = document.getElementById("ImgDisplayModal");
+            
             pic.readAsDataURL(this.files[0]);
             pic.addEventListener("load", function(event){
-                console.log(event.target);
+                //console.log(event.target);
                 document.getElementById("photo").innerHTML = "<img class='imagePhoto' src='' id='" +n+ "' accept='image/png, image/jpeg'>" + document.getElementById("photo").innerHTML;
                 document.getElementById(n).setAttribute("src", event.target.result);
-                document.getElementById(n).setAttribute("onclick", () => {
-                    const imgSrc = document.getElementById(n).getAttribute("src");
-                    document.getElementById(ImageInDisplay).setAttribute("src", imgSrc);
+                const uploadedPhoto = document.getElementById(n);
+                document.getElementById(n).addEventListener("click", (event) => {
+                    console.log('piggy');
+                    const imgSrc = event.target.getAttribute("src");
+                    var modalInDisplay = document.getElementById("ImgDisplayModal");
+                    document.getElementById("ImageInDisplay").setAttribute("src", imgSrc);
+                    //console.log(this.src);
                     modalInDisplay.style.display = "block";
+                    
+                
                 });
                 n += 1;
             });
