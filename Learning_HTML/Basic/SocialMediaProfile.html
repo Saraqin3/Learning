@@ -7,7 +7,7 @@
     display: none;
     position: fixed;
     z-index: 1;
-    background-color: white;
+    background-color: rgb(58, 158, 103);
     top:50%;
     left:50%;
     transform: translate(-50%, -50%);
@@ -17,18 +17,31 @@
 }
 
 .ImgDisplayModalContent {
-    background-color:rgb(144, 61, 61);
+    background-color:white;
     border-radius: 15px;
-    position: relative;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
+.X_button {
+    position: fixed;
+    z-index: 1;
+    left:95%;
+    top: 1px;
+    display: none;
+    
+}
+
+.X {
+    color: white;
+}
+
 .ImageInDisplay {
-    width:800px;
-    height: 800px;
-    padding: 20px;
+    width:400px;
+    height: 400px;
+    padding: 70px 0;
 }
 
 
@@ -278,6 +291,10 @@ img {
 <body>
     <div class="modalBackgroundColorDark" id="modalBackgroundColorDark">
     </div>
+
+    <div class="X_button" id="X_button">
+        <p class="X" id="X">X</p>
+    </div>
     
     <div class="frame">
 
@@ -381,7 +398,13 @@ img {
 
 <script>
    //Upload photo button triggers function
-    document.getElementById("inputFile").addEventListener("change", function(){
+   
+   var modalBackground = document.getElementById("modalBackgroundColorDark"); 
+   var X_button = document.getElementById("X_button");
+   var modalInDisplay = document.getElementById("ImgDisplayModal");
+   
+   
+   document.getElementById("inputFile").addEventListener("change", function(){
         if (this.files[0]) {
             var pic = new FileReader();
             
@@ -398,7 +421,8 @@ img {
                     document.getElementById("ImageInDisplay").setAttribute("src", imgSrc);
                     //console.log(this.src);
                     modalInDisplay.style.display = "block";
-                    
+                    modalBackground.style.display = "block";
+                    X_button.style.display = "block";
                 
                 });
                 n += 1;
@@ -407,7 +431,16 @@ img {
         }    
     });
 
-    var modalBackground = document.getElementById("modalBackgroundColorDark");
+    document.getElementById("X_button").addEventListener("click", function(){
+        console.log("test");
+        modalInDisplay.style.display = "none";
+        modalBackground.style.display = "none";
+        X_button.style.display = "none";
+    });
+
+
+
+    
 
 //---------------------
 
