@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/SocialMediaProfile.css">
+</head>
+
+<script src="js/var.js"></script>
+
+<body>
+    <div class="modalBackgroundColorDark" id="modalBackgroundColorDark">
+    </div>
+
+    <div class="X_button" id="X_button">
+        <p class="X" id="X">X</p>
+    </div>
+    
+    <div class="frame">
+
+        <div class="ImgDisplayModal" id="ImgDisplayModal">
+            <div class="ImgDisplayModalContent" id="ImgDisplayModalContent">
+                <img class="ImageInDisplay" id="ImageInDisplay" src="" alt="Image in display">
+            </div>
+
+        </div> 
+
+        <div id="photoModal" class="photoModal">
+            <div class="photoModalContent">          
+                <img class="picInModal" id="picInModal" src="" alt="Picture in modal">
+                <div class="modalLine"></div>
+                <input type="file" id="changePhoto" style="display: none;">
+                <input class="buttonInModal" type="button" value="Upload Photo" onclick="document.getElementById('changePhoto').click();">
+                <div class="modalLine"></div>
+                <button class="buttonInModal" id="delete">Delete Photo</button>
+                <div class="modalLine"></div>
+                <button class="buttonInModal" id="cancel">Cancel</button>
+            </div>
+        </div>
+
+        <div id="photoConfirmationModal" class="photoConfirmationModal">
+            <div class="photoConfirmationModalContent">
+                <img class="picInModal" id="picConfirmation" src="" alt="Profile Pic Confirmation">
+                <div class="modalLine"></div>
+                <div class="question">You want to change your profile photo?</div>
+                <div class="modalLine"></div>
+                <button class="buttonInModal" id="yesConfirmation">Yes</button>
+                <div class="modalLine"></div>
+                <button class="buttonInModal" id="noConfirmation">No</button>
+            </div>
+        </div>
+
+        <div id="photoDeleteModal" class="photoDeleteModal">
+            <div class="photoDeleteModalContent">
+                <img class="picInModal" id="picDelete" src="" alt="Profile Pic Delete">
+                <div class="modalLine"></div>
+                <div class="question">You want to delete photo?</div>
+                <div class="modalLine"></div>
+                <button class="buttonInModal" id="yesDelete">Yes</button>
+                <div class="modalLine"></div>
+                <button class="buttonInModal" id="noDelete">No</button>
+            </div>
+        </div>
+
+
+        <div id="myModal" class="mymodal">
+            <div class="mymodalContent">
+                <label for="name">Username:</label>
+                <br>
+                <input type="text" id="name" maxlength="10">
+                <br>
+                <br>
+                <label for="bio">Bio:</label>
+                <br>
+                <textarea id="bio" rows="3" cols="30" maxlength="290"></textarea>
+                <br>
+                <br>
+                <button class="buttonInModal" id="save">Save</button>
+                <button class="buttonInModal" id="cancel2">Cancel</button>
+            </div>
+        </div>
+
+        <div class="profile">
+            
+            <div class="photoAndName">
+                
+                <div class="imgBox">
+                    <img class="originalPic" id="originalPic" src="Default_pfp.svg.png" alt="Profile photo" width="150px" height="150px">
+                </div>
+            
+            
+                <div class="usernameBox">
+                    <div class="usernameBox1">
+                        <div class="username" id="username">Username</div>
+                        <button class="button" id="editButton">Edit Profile</button>
+                        <input type="file" id="inputFile" style="display: none;">
+                        <input class="button" type="button" value="Upload Photo" onclick="document.getElementById('inputFile').click();">
+                    </div>
+                    <br>
+                    <p class="oldBio" id="oldBio">No bio</p>
+                </div>
+                
+            </div>
+            
+        </div>
+        <br>
+        <hr>
+        <div class="photos" id="photo"></div>
+    </div>
+    
+    
+</body>
+
+
+<script src="js/main.js"></script>
+
+</html>
