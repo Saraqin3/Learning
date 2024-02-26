@@ -1,0 +1,76 @@
+.frame {
+    display:flex;
+    margin: 50px auto;
+    flex-direction: column;
+    gap:10px;
+
+}
+
+.pBox {
+    margin:auto;
+}
+
+.p1 {
+    display:flex;
+    margin:auto;
+    width: 600px;
+    gap: 30px;
+}
+
+.profilePic {
+    width: 50px;
+    height: 50px;
+    
+}
+
+.profilePicBox {
+    width: 50px;
+}
+
+.editArea {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap:10px;
+}
+
+.writeSpace {
+    height: 50px;
+    box-sizing: border-box;
+    width:100%;
+    border: 0;
+    outline: none;
+    font-size: 40px;
+}
+
+.picForUpload {
+    width:30px;
+    height:30px;
+}
+
+.picForUpload:hover {
+    cursor:pointer;
+}
+
+.line {
+    border-top: 1px solid #696767;
+    margin: 0;
+}
+
+.uploadBar {
+    display: flex;
+}
+
+.postButtonBox {
+    width: 80px;
+    margin:auto auto;
+}
+
+.middleBlankSpace {
+    flex-grow: 1;
+}
+
+.picForReview {
+    height: 300px;
+    width: 300px;
+}
