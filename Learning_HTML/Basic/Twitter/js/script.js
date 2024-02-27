@@ -1,8 +1,6 @@
 //1111
 
-var modalBackground = document.getElementById("modalBackgroundColorDark"); 
-var X_button = document.getElementById("X_button");
-var modalInDisplay = document.getElementById("ImgDisplayModal");
+var picForReview = document.getElementById("picForReview");
 
 
 document.getElementById("inputFile").addEventListener("change", function(){
@@ -11,23 +9,12 @@ document.getElementById("inputFile").addEventListener("change", function(){
          
          pic.readAsDataURL(this.files[0]);
          pic.addEventListener("load", function(event){
-             //console.log(event.target);
-             document.getElementById("photo").innerHTML = "<img class='imagePhoto' src='' id='" +n+ "' accept='image/png, image/jpeg'>" + document.getElementById("photo").innerHTML;
-             document.getElementById(n).setAttribute("src", event.target.result);
-             const uploadedPhoto = document.getElementById(n);
-             document.getElementById(n).addEventListener("click", (event) => {
-                 console.log('piggy');
-                 const imgSrc = event.target.getAttribute("src");
-                 var modalInDisplay = document.getElementById("ImgDisplayModal");
-                 document.getElementById("ImageInDisplay").setAttribute("src", imgSrc);
+                //debugger;
+                 
+                 picForReview.setAttribute("src", event.target.result);
                  //console.log(this.src);
-                 modalInDisplay.style.display = "block";
-                 modalBackground.style.display = "block";
-                 X_button.style.display = "block";
-             
+                 picForReview.style.display="block";
              });
-             n += 1;
-         });
          
      }    
  });
