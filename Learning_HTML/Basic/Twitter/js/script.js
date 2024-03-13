@@ -18,3 +18,13 @@ document.getElementById("inputFile").addEventListener("change", function(){
          
      }    
  });
+
+
+ document.getElementById("postButton").addEventListener("click", function(){
+    if (this.file[0]) {
+
+    }
+    else {
+        
+    }
+ })

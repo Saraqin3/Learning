@@ -57,6 +57,11 @@
     margin: 0;
 }
 
+.line2 {
+    border-top: 1px solid #696767;
+    margin: 0 0 20px 0;
+}
+
 .uploadBar {
     display: flex;
 }
@@ -71,7 +76,8 @@
 }
 
 .picForReview {
-    height: 300px;
-    width: 300px;
+    height: 100%;
+    width: 100%;
     display: none;
+    border-radius: 15px;
 }
