@@ -10,7 +10,7 @@ document.getElementById("inputFile").addEventListener("change", function(){
          pic.readAsDataURL(this.files[0]);
          pic.addEventListener("load", function(event){
                 //debugger;
-                 
+                 dynamicImageSrc = event.target.result;
                  picForReview.setAttribute("src", event.target.result);
                  //console.log(this.src);
                  picForReview.style.display="block";
@@ -26,34 +26,40 @@ document.getElementById("inputFile").addEventListener("change", function(){
         
         // Outer container
         const divContainer = document.createElement("div");
-        divContainer.class="p1";
-        divContainer.id="p1";
+        divContainer.className = "p1";
+        divContainer.id = "p1";
 
         // Inner profile pic container
         const profilePicContainer = document.createElement("div");
-        profilePicContainer.class="profilePicBox";
-        profilePicContainer.id="profilePicBox";
+        profilePicContainer.className = "profilePicBox";
+        profilePicContainer.id = "profilePicBox";
 
         // Profile image
         const profileImageElement = document.createElement("img");
+        profileImageElement.className = "profilePic";
+        profileImageElement.id = "profilePic";
         profileImageElement.src = "Default_pfp.svg.png";
 
         // Text area
         const editArea = document.createElement("div");
+        editArea.className = "editArea";
+        editArea.id = "editArea";
         const divInEditArea = document.createElement("div");
-        const text
+        const text = document.createElement("p");
         const picContainer = document.createElement("div");
         const imageElement = document.createElement("img");
-        imageElement.class="picForReview";
-        imageElement.src="";
+        imageElement.className ="picForReview";
+        imageElement.src = dynamicImageSrc;
+        text.innerHTML = document.getElementById("writeSpace").value;
 
         // Line
         const lineDiv = document.createElement("div");
-        lineDiv.class = "line2";
+        lineDiv.className = "line3";
+        lineDiv.id = "line3";
 
 
-        document.getElementById("pBox").prepend(lineDiv);
-        document.getElementById("pBox").prepend(divContainer);
+        
+        document.getElementById("pBox").append(divContainer);
         divContainer.append(profilePicContainer);
         profilePicContainer.append(profileImageElement);
         divContainer.append(editArea);
@@ -61,8 +67,10 @@ document.getElementById("inputFile").addEventListener("change", function(){
         divInEditArea.append(text);
         divInEditArea.append(picContainer);
         picContainer.append(imageElement);
+        imageElement.style.display = "block";
+        document.getElementById("pBox").append(lineDiv);
 
-        n = n+1;
+      
 
 
         
