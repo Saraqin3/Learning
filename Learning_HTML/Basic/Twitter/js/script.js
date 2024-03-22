@@ -70,11 +70,16 @@ document.getElementById("inputFile").addEventListener("change", function(){
         imageElement.style.display = "block";
         document.getElementById("pBox").append(lineDiv);
 
-      
+        if (dynamicImageSrc == null) {
+            picContainer.style.display = "none";
+        }
 
-
-        
+        if (document.getElementById("writeSpace").value=="") {
+            text.style.display = "none";
+        }
+  
     }
+    
     else {
 
     }

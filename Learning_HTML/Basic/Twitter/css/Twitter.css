@@ -86,3 +86,7 @@
     display: none;
     border-radius: 15px;
 }
+
+.postText {
+    display: none;
+}
