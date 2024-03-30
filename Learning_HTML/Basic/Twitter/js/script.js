@@ -59,7 +59,8 @@ document.getElementById("inputFile").addEventListener("change", function(){
 
 
         
-        document.getElementById("pBox").append(divContainer);
+    
+        document.getElementById("p2").prepend(divContainer);
         divContainer.append(profilePicContainer);
         profilePicContainer.append(profileImageElement);
         divContainer.append(editArea);
@@ -68,7 +69,7 @@ document.getElementById("inputFile").addEventListener("change", function(){
         divInEditArea.append(picContainer);
         picContainer.append(imageElement);
         imageElement.style.display = "block";
-        document.getElementById("pBox").append(lineDiv);
+        
 
         if (dynamicImageSrc == null) {
             picContainer.style.display = "none";
@@ -83,4 +84,9 @@ document.getElementById("inputFile").addEventListener("change", function(){
     else {
 
     }
+
+    document.getElementById("writeSpace").value ="";
+    document.getElementById("inputFile").value = "";
+    picForReview.style.display="none";
+
  })
